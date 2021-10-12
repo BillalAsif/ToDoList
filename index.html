@@ -16,17 +16,17 @@
 <body>
 
     <div class="container bg">
-        <div class="grid-container">
+        <div class="row">
 
-            <div class="grid-left">
-                <ul>
-                    <li>
-                        <i class="far fa-sun">Today</i>
-                    </li>
-                </ul>
+            <div class="col-3 nav-left">
+                <button class="btn btn-primary">Today<i class="fas fa-sun"></i></button>
+                <button class="btn btn-primary">Tommorrow<i class="far fa-sun"></i></button>
+                <button class="btn btn-primary">Upcoming<i class="fas fa-calendar-times"></i></button>
+                <button class="btn btn-primary">Someday<i class="far fa-calendar-times"></i></button>
+                <button class="btn btn-primary">Completed<i class="far fa-check-circle"></i></button>
             </div>
 
-            <div class="grid-main">
+            <div class="col-9">
                 <h1 class="center">To Do List</h1>
                 <input type="text" class="form-control">
                 <button class="btn btn-primary">Add</button>

@@ -7,22 +7,15 @@ body {
     background-color:white;
 }
 
-.grid-container {
-    display: grid;
+
+.nav-left button {
+    display:block;
+    padding: 5px;
+    margin: 10px;
+    width: 100%;
+    text-align: left;
 }
 
-.grid-container div {
-    padding:  0px 10px;
-}
-
-.grid-left {
-    grid-row-start: 1;
-    grid-row-end: 4;
-
-
-}
-
-.grid-main {
-    grid-column-start: 2;
-    grid-column-end: 4;
+.nav-left button i  {
+    float: right;
 }
