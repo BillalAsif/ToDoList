@@ -1,21 +1,40 @@
-body {
-    background-image: linear-gradient(
-        90deg, rgb(2, 0, 36) 0%, rgb(9, 9, 121) 35%, rgb(0, 212, 255) 100%);
-}
 
 .bg {
-    background-color:white;
+    height: 100vh;
 }
 
+.nav-left {
+    background-color: white;
+    height: 100vh;
+}
 
 .nav-left button {
     display:block;
     padding: 5px;
-    margin: 10px;
+    margin: 10px 0px;
     width: 100%;
     text-align: left;
 }
 
 .nav-left button i  {
-    float: right;
+   margin-right: 5px;
 }
+
+.nav-left button span {
+    float: right;
+    margin-top:2px
+}
+
+.overview {
+    background-color:brown;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 7px;
+    padding: 25px;
+    color: white;
+}
+
+.overview h1 {
+    text-align: left;
+}
+
