@@ -3,6 +3,18 @@
     height: 100vh;
 }
 
+nav {
+    padding: 20px 0px;
+}
+
+.title {
+    text-align: center;
+}
+
+.dayofmon {
+    text-align:right;
+}
+
 .nav-left {
     background-color: white;
     height: 100vh;
