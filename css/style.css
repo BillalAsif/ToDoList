@@ -38,7 +38,7 @@ nav {
 }
 
 .overview {
-    background-color:brown;
+    background-color:indigo;
     border-radius: 15px;
     text-align: center;
     margin-top: 7px;
@@ -48,5 +48,18 @@ nav {
 
 .overview h1 {
     text-align: left;
+}
+
+.timer {
+    background-color:coral;
+    border-radius: 15px;
+    margin-top: 7px;
+    padding: 25px;
+    color: white;
+    text-align: center;
+}
+
+.timer button {
+    margin-top:6px;
 }
 
