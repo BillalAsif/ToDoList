@@ -63,3 +63,28 @@ nav {
     margin-top:6px;
 }
 
+.timer-button {
+    display:flex;
+}
+
+.timer-button button {
+    margin:10px;
+}
+
+.add-task-btn i {
+    float:right;
+    margin-top: 3px;
+}
+
+.task {
+    background-color:cyan;
+    border-radius: 15px;
+    margin-top: 7px;
+    padding: 25px;
+    color: white;
+    text-align: center;
+}
+
+.task .row input {
+    background: transparent;
+}

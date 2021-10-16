@@ -62,6 +62,7 @@
                 </button>
 
                 <h3>Tasks</h3>
+                <button class="btn btn-dark add-task-btn">Add Task<i class="fas fa-plus-square"></i></button>
 
             </div>
 
@@ -93,34 +94,51 @@
 
                 </div>
 
-                <div class="timer">
+                <div class="task">
 
                     <div class="row">
-
-                        <div class="col-4">
-                            <button class="btn btn-primary">Start</button>
-                        </div>
-
-                        <div class="col-4">
-                            <h1>00:00</h1>
-                        </div>
-
-                        <div class="col-4">
-                            <button class="btn btn-danger">Stop</button>
-                        </div>
+                        
+                        <h3>Add Task</h6>
+                        <span>Name:</span>Name:<input class="form-control" type="text">
+                        <input class="form-control" type="textarea">
+                        <select class="form-select"></select>
+                        <select class="form-select"></select>
+                        <select class="form-select"></select>
 
                     </div>
 
                 </div>
 
+                    <div class="timer">
+
+                        <div class="row">
+
+                            <div class="col-4">
+                                <button class="btn btn-primary">Start</button>
+                            </div>
+
+                            <div class="col-4 timer-button">
+                                <button class="btn btn-secondary"><i class="fas fa-plus"></i></button>
+                                <h1>00:00</h1>
+                                <button class="btn btn-secondary"><i class="fas fa-minus"></i></button>
+                            </div>
+
+                            <div class="col-4">
+                                <button class="btn btn-danger">Stop</button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                 
             </div>
         </div>
-    </div>
 
-    <script src="js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js"
-        integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous">
-        </script>
+        <script src="js/script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js"
+            integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous">
+            </script>
 </body>
 
 </html>
