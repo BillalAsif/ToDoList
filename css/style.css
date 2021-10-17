@@ -1,10 +1,11 @@
 
 .bg {
     height: 100vh;
+    background-color: black;
 }
 
-nav {
-    padding: 20px 0px;
+.pt-10 {
+    padding-top:10px;
 }
 
 .title {
@@ -15,17 +16,13 @@ nav {
     text-align:right;
 }
 
-.nav-left {
-    background-color: white;
-    height: 100vh;
-}
-
-.nav-left button {
+.nav-button {
     display:block;
     padding: 5px;
     margin: 10px 0px;
     width: 100%;
     text-align: left;
+    border: none;
 }
 
 .nav-left button i  {
@@ -38,12 +35,12 @@ nav {
 }
 
 .overview {
-    background-color:indigo;
-    border-radius: 15px;
+    background-color:lightgray;
+    border: black 1px solid;
     text-align: center;
-    margin-top: 7px;
     padding: 25px;
-    color: white;
+    color: black;
+    margin: 10px 0px;
 }
 
 .overview h1 {
@@ -51,16 +48,15 @@ nav {
 }
 
 .timer {
-    background-color:coral;
-    border-radius: 15px;
-    margin-top: 7px;
+    background-color:lightgray;
+    border: black 1px solid;
     padding: 25px;
     color: white;
     text-align: center;
 }
 
 .timer button {
-    margin-top:6px;
+    margin-top:10px;
 }
 
 .timer-button {
@@ -71,15 +67,19 @@ nav {
     margin:10px;
 }
 
+.timer-button h1 {
+    margin-top:3px;
+}
+
 .add-task-btn i {
     float:right;
     margin-top: 3px;
 }
 
 .task {
-    background-color:cyan;
-    border-radius: 15px;
-    margin-top: 7px;
+    background-color:lightgray;
+    border: black 1px solid;
+    margin-top: 10px;
     padding: 25px;
     color: white;
     text-align: center;

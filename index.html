@@ -13,83 +13,67 @@
         integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="bg">
 
-    <nav class="container">
-
-        <div class="row">
-
-            <div class="col-3">
-                <button class="btn btn-success">Sign up</button>
-                <button class="btn btn-secondary">Sign in</button>
-            </div>
-
-            <div class="col-6">
-                <h1 class="title">Planner</h1>
-            </div>
-
-            <div class="col-3">
-                <div class="dayofmon">
-                    <i class="fas fa-calendar-week"></i><span id="today"></span>
-                </div>
-            </div>
-
-
-
-        </div>
-
-    </nav>
-
-    <div class="container bg">
+    <div class="container">
         <div class="row">
 
             <div class="col-3 nav-left">
 
-                <button class="btn btn-primary"><i class="fas fa-sun"></i>Today
+                <button class="nav-button"><i class="fas fa-sun"></i>Today
                     <span class="badge bg-secondary">1</span>
                 </button>
-                <button class="btn btn-primary"><i class="far fa-sun"></i>Tommorrow
+                <button class="nav-button"><i class="far fa-sun"></i>Tommorrow
                     <span class="badge bg-secondary">5</span>
                 </button>
-                <button class="btn btn-primary"><i class="fas fa-calendar-times"></i>Upcoming
+                <button class="nav-button"><i class=" fas fa-calendar-times"></i>Upcoming
                     <span class="badge bg-secondary">9</span>
                 </button>
-                <button class="btn btn-primary"><i class="far fa-calendar-times"></i>Someday
+                <button class="nav-button"><i class="far fa-calendar-times"></i>Someday
                     <span class="badge bg-secondary">2</span>
                 </button>
-                <button class="btn btn-primary"><i class="far fa-check-circle"></i>Completed
+                <button class="nav-button"><i class="far fa-check-circle"></i>Completed
                     <span class="badge bg-secondary">4</span>
                 </button>
-
-                <h3>Tasks</h3>
-                <button class="btn btn-dark add-task-btn">Add Task<i class="fas fa-plus-square"></i></button>
 
             </div>
 
             <div class="col-9">
 
-                <div class="overview">
+                <div class="overview pt-10">
 
                     <div class="row">
-                        <div class="col-3">
+                        <div class="col-6">
                             <h6>Task Completed</h6>
                             <h3>2</h3>
                         </div>
 
-                        <div class="col-3">
-                            <h6>Time Elasped</h6>
-                            <h3>2</h3>
-                        </div>
-
-                        <div class="col-3">
+                        <div class="col-6">
                             <h6>Task Outstanding</h6>
                             <h3>2</h3>
                         </div>
+                    </div>
 
-                        <div class="col-3">
-                            <h6>Time Estimation</h6>
-                            <h3>2</h3>
+                </div>
+
+                <div class="timer">
+
+                    <div class="row">
+
+                        <div class="col-4">
+                            <button class="btn btn-primary">Start</button>
                         </div>
+
+                        <div class="col-4 timer-button">
+                            <button class="btn btn-secondary"><i class="fas fa-plus"></i></button>
+                            <h1>00:00</h1>
+                            <button class="btn btn-secondary"><i class="fas fa-minus"></i></button>
+                        </div>
+
+                        <div class="col-4">
+                            <button class="btn btn-danger">Stop</button>
+                        </div>
+
                     </div>
 
                 </div>
@@ -97,41 +81,14 @@
                 <div class="task">
 
                     <div class="row">
-                        
-                        <h3>Add Task</h6>
-                        <span>Name:</span>Name:<input class="form-control" type="text">
-                        <input class="form-control" type="textarea">
-                        <select class="form-select"></select>
-                        <select class="form-select"></select>
-                        <select class="form-select"></select>
+
+                        <i class="far fa-plus-square"></i><input class="new-task-input" placeholder="New Task..."
+                            type="text">
 
                     </div>
 
                 </div>
 
-                    <div class="timer">
-
-                        <div class="row">
-
-                            <div class="col-4">
-                                <button class="btn btn-primary">Start</button>
-                            </div>
-
-                            <div class="col-4 timer-button">
-                                <button class="btn btn-secondary"><i class="fas fa-plus"></i></button>
-                                <h1>00:00</h1>
-                                <button class="btn btn-secondary"><i class="fas fa-minus"></i></button>
-                            </div>
-
-                            <div class="col-4">
-                                <button class="btn btn-danger">Stop</button>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                 
             </div>
         </div>
 
