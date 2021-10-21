@@ -1,11 +1,9 @@
 //Timer
+let isPaused = false;
 let counterDisplay = document.getElementById("counter");
 let currentCount = 0;
 counterDisplay.innerHTML = currentCount;
-const startButton = document.getElementById("startButton").addEventListener('click', () => {
-    const count = currentCount;
-    startCounter(count);
-});
+
 const pauseButton = document.getElementById("pauseButton").addEventListener('click', () => { });
 const resetButton = document.getElementById("resetButton").addEventListener('click', () => {
     updateCounter(0);
@@ -16,8 +14,6 @@ const increaseCountButton = document.getElementById("increaseCount").addEventLis
 const decreaseCountButton = document.getElementById("decreaseCount").addEventListener('click', () => {
     updateCounter(-15);
 });
-
-
 
 const updateCounter = (count) => {
     if (currentCount === 0 && count < 0) {
@@ -33,16 +29,22 @@ const updateCounter = (count) => {
     }
 }
 
+const startButton = document.getElementById("startButton").addEventListener('click', () => {
+    loop();
+});
 
-function startCounter(count) {
-    for (i = -0; i < count; i++) {
-        setTimeout(minusCountByOne(), 1000);
+function loop() {
+    if (currentCount > 0) {
+        startCounter();
     }
 }
 
-function minusCountByOne() {
-    currentCount = currentCount - 1;
-    counterDisplay.innerHTML = currentCount;
+function startCounter() {
+    setTimeout(function () {
+        currentCount = currentCount - 1;
+        counterDisplay.innerHTML = currentCount;
+        loop();
+    }, 1000)
 }
 
 //Check this out.
