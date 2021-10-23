@@ -21,13 +21,8 @@ const updateCounter = (count) => {
     if (currentSecs === 0 && currentMins === 0 && currentHours === 0 && count < 0) {
         alert('Can not decrease timer below zreo!');
     }
-    else if (count === 0) {
-        currentMins = 00;
-        displayCounter(0);
-    }
     else {
-        currentMins += count;
-        counterDisplay.innerHTML = currentSecs + ":" + currentMins + ":" + currentHours;
+        displayCounter(count);
     }
 }
 
@@ -50,14 +45,29 @@ function startCounter() {
 }
 
 function displayCounter(mins) {
-    if (mins > 60){
+    if (mins < 0 && currentMins == 0 && currentHours > 0) {
+        currentHours = currentHours - 1;
+        currentMins = 45;
+    }
+    else if (currentMins >= 45){
         currentHours = currentHours + 1;
         currentMins = 00;
         currentSecs = 00;
+        addCounterToDom();
     } else {
         currentSecs = 00;
-        currentMins = mins;
+        currentMins += mins;
         currentHours = 00;
+        addCounterToDom();
     }
+}
+
+function addCounterToDom() {
     counterDisplay.innerHTML = currentHours + ":" + currentMins + ":" + currentSecs;
 }
+
+let date = new Date;
+alert(date.getDate(0));
+
+//check it out
+//https://www.developerdrive.com/build-countdown-timer-pure-javascript/#:~:text=%20How%20to%20Build%20a%20Countdown%20Timer%20in,two%20new%20local%20variables.%20The%20first...%20More%20
