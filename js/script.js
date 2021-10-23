@@ -1,8 +1,10 @@
 //Timer
 let isPaused = false;
 let counterDisplay = document.getElementById("counter");
-let currentCount = 0;
-counterDisplay.innerHTML = currentCount;
+let currentSecs = 00;
+let currentMins = 00;
+let currentHours = 00;
+displayCounter(0);
 
 const pauseButton = document.getElementById("pauseButton").addEventListener('click', () => { });
 const resetButton = document.getElementById("resetButton").addEventListener('click', () => {
@@ -16,16 +18,16 @@ const decreaseCountButton = document.getElementById("decreaseCount").addEventLis
 });
 
 const updateCounter = (count) => {
-    if (currentCount === 0 && count < 0) {
+    if (currentSecs === 0 && currentMins === 0 && currentHours === 0 && count < 0) {
         alert('Can not decrease timer below zreo!');
     }
     else if (count === 0) {
-        currentCount = 0;
-        counterDisplay.innerHTML = currentCount;
+        currentMins = 00;
+        displayCounter(0);
     }
     else {
-        currentCount += count;
-        counterDisplay.innerHTML = currentCount;
+        currentMins += count;
+        counterDisplay.innerHTML = currentSecs + ":" + currentMins + ":" + currentHours;
     }
 }
 
@@ -47,5 +49,15 @@ function startCounter() {
     }, 1000)
 }
 
-//Check this out.
-//https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_win_settimeout_clock
+function displayCounter(mins) {
+    if (mins > 60){
+        currentHours = currentHours + 1;
+        currentMins = 00;
+        currentSecs = 00;
+    } else {
+        currentSecs = 00;
+        currentMins = mins;
+        currentHours = 00;
+    }
+    counterDisplay.innerHTML = currentHours + ":" + currentMins + ":" + currentSecs;
+}
