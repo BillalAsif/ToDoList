@@ -1,25 +1,50 @@
-//Timer
+//Variables
 let isPaused = false;
 let counterDisplay = document.getElementById("counter");
-var timer = new Date("Mar 15, 2019 00:00:00").getTime();
+let timer = new Date("Mar 15, 2019 00:00:00").getTime();
+const resetButton = document.getElementById("resetButton");
+const increaseCountButton = document.getElementById("increaseCount");
+const decreaseCountButton = document.getElementById("decreaseCount");
+const startButton = document.getElementById("startButton");
+const pauseButton = document.getElementById("pauseButton");
+
+//Dispaly timer as zero onload
 displayTimer(0,0,0);
 timer = 0 /timer;
-const pauseButton = document.getElementById("pauseButton").addEventListener('click', () => { });
-const resetButton = document.getElementById("resetButton").addEventListener('click', () => {
+
+//Disbale start/pause button onload
+startButton.classList.add("disabled");
+pauseButton.classList.add("disabled");
+
+//Buuton triggers
+resetButton.addEventListener('click', () => {
     displayTimer(0,0,0);
     timer = 0 /timer;
+    startButton.classList.add("disabled");
+    pauseButton.classList.add("disabled");
 });
-const increaseCountButton = document.getElementById("increaseCount").addEventListener('click', () => {
+
+increaseCountButton.addEventListener('click', () => {
     updateTimer(900000);
 });
-const decreaseCountButton = document.getElementById("decreaseCount").addEventListener('click', () => {
-    updateTimer(-900000);
+
+decreaseCountButton.addEventListener('click', () => {
+    if (counterDisplay.innerHTML == 0 + ":" + 0 + ":" + 0) {
+        alert("Timer can not go below Zero!");
+    } else {
+        updateTimer(-900000);
+    }
 });
 
-const startButton = document.getElementById("startButton").addEventListener('click', () => {
-    loop();
+startButton.addEventListener('click', () => {
+    toggleCounter("start");
 });
 
+pauseButton.addEventListener('click', () => {
+    toggleCounter("pause");
+ });
+
+ //Functions
 function updateTimer(time) {
 timer = timer + time;
 let hours;
@@ -30,32 +55,27 @@ let secs;
         mins = Math.floor((timer % (1000 * 60 * 60)) / (1000 * 60));
         secs = Math.floor((timer % (1000 * 60)) / 1000);
         displayTimer(hours, mins, secs)
-    } else {
-
+        startButton.classList.remove('disabled');
     }
 }
 
-function loop() {
-    if (currentCount > 0) {
-        startCounter();
+function toggleCounter(state) {
+    
+    if (state === "start") {
+        let startCounter = setInterval(function () {
+            updateTimer(-1000)
+            startButton.classList.add('disabled');
+        }, 1000);
+        startCounter;
+        pauseButton.classList.remove("disabled")
     }
-}
-
-function startCounter() {
-    setTimeout(function () {
-        currentCount = currentCount - 1;
-        counterDisplay.innerHTML = currentCount;
-        loop();
-    }, 1000)
+    if (state === "pause") {
+        clearInterval(startCounter);
+        startButton.classList.remove("disabled");
+        pauseButton.classList.add("disabled");
+    }
 }
 
 function displayTimer(hours, mins, secs) {
-    if (hours == 0 && mins == 0 && secs == 0) {
         counterDisplay.innerHTML = hours + ":" + mins + ":" + secs;
-    }else if (hours == 0 && mins < 0) {
-        alert("Timer can not go below Zero!");
-    }
-    else {
-        counterDisplay.innerHTML = hours + ":" + mins + ":" + secs;
-    }
 }
