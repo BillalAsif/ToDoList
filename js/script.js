@@ -37,11 +37,21 @@ decreaseCountButton.addEventListener('click', () => {
 });
 
 startButton.addEventListener('click', () => {
-    toggleCounter("start");
+    var startCounter = setInterval(() => {
+        updateTimer(-1000)
+        startButton.classList.add('disabled');
+        if(isPaused == true){
+            clearInterval(startCounter);
+        }
+    }, 1000);
+    startCounter;
+    pauseButton.classList.toggle('disabled');
 });
 
 pauseButton.addEventListener('click', () => {
-    toggleCounter("pause");
+    isPaused = true;
+    startButton.classList.toggle('disabled');
+    pauseButton.classList.toggle('disabled');
  });
 
  //Functions
@@ -55,24 +65,7 @@ let secs;
         mins = Math.floor((timer % (1000 * 60 * 60)) / (1000 * 60));
         secs = Math.floor((timer % (1000 * 60)) / 1000);
         displayTimer(hours, mins, secs)
-        startButton.classList.remove('disabled');
-    }
-}
-
-function toggleCounter(state) {
-    
-    if (state === "start") {
-        let startCounter = setInterval(function () {
-            updateTimer(-1000)
-            startButton.classList.add('disabled');
-        }, 1000);
-        startCounter;
-        pauseButton.classList.remove("disabled")
-    }
-    if (state === "pause") {
-        clearInterval(startCounter);
-        startButton.classList.remove("disabled");
-        pauseButton.classList.add("disabled");
+        startButton.classList.toggle('disabled');
     }
 }
 
