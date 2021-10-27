@@ -61,6 +61,7 @@
 
 .timer-button {
     display:flex;
+    position: relative;
 }
 
 .timer-button button {
@@ -74,6 +75,21 @@
 .add-task-btn i {
     float:right;
     margin-top: 3px;
+}
+
+#increaseCount {
+    position: absolute;
+    left: 0px;
+}
+
+#counter {
+    text-align: center;
+    width: 99%;
+}
+
+#decreaseCount {
+    position: absolute;
+    right: 0px;
 }
 
 .task {
@@ -99,3 +115,4 @@
     background: transparent;
     border: none;
 }
+

@@ -1,3 +1,4 @@
+//Timer Codes---------------------------------------------
 //Variables
 let isPaused = false;
 let counterDisplay = document.getElementById("counter");
@@ -17,12 +18,6 @@ startButton.classList.add("disabled");
 pauseButton.classList.add("disabled");
 
 //Buuton triggers
-resetButton.addEventListener('click', () => {
-    displayTimer(0, 0, 0);
-    timer = 0 / timer;
-    timerRunState('reset');
-});
-
 increaseCountButton.addEventListener('click', () => {
     updateTimer(900000);
     startButton.classList.remove('disabled');
@@ -45,12 +40,21 @@ startButton.addEventListener('click', () => {
         }
     }, 1000);
     startCounter;
+    isPaused = false;
     timerRunState('start');
 });
 
 pauseButton.addEventListener('click', () => {
     isPaused = true;
     timerRunState('pause');
+});
+
+// Error on this function - to reolve add 1 sec delay before excute
+resetButton.addEventListener('click', () => {
+    isPaused = true;
+    timer = 0 / timer;
+    timerRunState('reset');
+    displayTimer(0, 0, 0);
 });
 
 //Functions
@@ -68,7 +72,7 @@ function updateTimer(time) {
 }
 
 function displayTimer(hours, mins, secs) {
-    counterDisplay.innerHTML = hours + ":" + mins + ":" + secs;
+    counterDisplay.innerHTML = ('0' + hours).slice(-2) + ":" + ('0' + mins).slice(-2) + ":" + ('0' + secs).slice(-2);
 }
 
 function timerRunState(state) {
@@ -88,3 +92,27 @@ function timerRunState(state) {
             startButton.classList.add('disabled');
     }
 }
+
+//Task Code ----------------------------------------------
+//Variables
+
+
+
+
+
+
+
+
+
+//Button triggers
+
+
+
+
+
+
+
+
+
+
+//Functions
