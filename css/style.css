@@ -108,6 +108,7 @@
 .task i {
     width:5%;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .task input {

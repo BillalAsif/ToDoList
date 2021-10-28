@@ -95,9 +95,10 @@ function timerRunState(state) {
 
 //Task Code ----------------------------------------------
 //Variables
-let newTask = document.getElementById("newtask");
+let newTask = document.getElementById("newTask");
 let addButton = document.getElementById("addButton");
-
+let calender = document.getElementById("calender");
+let repeat = document.getElementById("repeat");
 
 
 
