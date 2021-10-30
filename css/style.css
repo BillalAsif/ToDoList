@@ -99,6 +99,7 @@
     padding: 20px;
     color: white;
     text-align: center;
+    position: relative;
 }
 
 .task .row input {
@@ -117,3 +118,34 @@
     border: none;
 }
 
+.calenderUI {
+    position:absolute;
+    width: 300px;
+    height: 300px;
+    background-color:white;
+    right: 0px;
+    top: 80px;
+    padding: 5px;
+}
+
+.calenderUI div {
+    height: 25%;
+    text-align: center;
+}
+
+
+.year {
+    background-color: aqua;
+}
+
+.month {
+    background-color: purple;
+}
+
+.days {
+    background-color: red;
+}
+
+.time {
+    background-color: chartreuse;
+}
