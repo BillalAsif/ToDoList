@@ -122,7 +122,7 @@
     position:absolute;
     width: 300px;
     height: 300px;
-    background-color:white;
+    background-color:lightgray;
     right: 0px;
     top: 80px;
     padding: 5px;
@@ -130,12 +130,14 @@
 
 .calenderUI div {
     height: 25%;
+    width: 99.9%;
     text-align: center;
+    position: relative;
 }
-
 
 .year {
     background-color: aqua;
+
 }
 
 .month {
@@ -147,5 +149,24 @@
 }
 
 .time {
-    background-color: chartreuse;
+    background-color:bisque;
 }
+
+.year :first-child, .month :first-child, .days :first-child, .time :first-child{
+    position: absolute;
+    left:5px;
+    top:25px;
+    font-size: 20px;
+}
+
+.year :nth-child(2), .month :nth-child(2), .days :nth-child(2), .time :nth-child(2){
+padding-top:20px
+}
+
+.year :nth-child(3), .month :nth-child(3), .days :nth-child(3), .time :nth-child(3){
+    position: absolute;
+    right:10px;
+    top:25px;
+    font-size: 20px;
+}
+
