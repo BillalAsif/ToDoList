@@ -109,33 +109,41 @@ let daysLeft = document.getElementById("daysLeft");
 let timeRight = document.getElementById("timeRight");
 let timeLeft = document.getElementById("timeLeft");
 let yearText = document.getElementById("yearText");
+let monthText = document.getElementById("monthText");
+let dayText = document.getElementById("dayText");
+let timeText = document.getElementById("timeText");
 let date = new Date();
+let hours = date.getHours();
+let minutes = date.getMinutes();
 let currentYear = date.getFullYear();
-let yearArray = [currentYear, currentYear + 1, currentYear + 2, currentYear + 3, currentYear + 4, currentYear + 5];
-let month = date.getMonth();
-let monthArray = [
-
-
-];
-
+let currentMonth = date.getMonth();
+let currrentDay = date.getDay();
 
 
 //Using Variables
-yearText.textContent = yearArray[0];
-let currentArrayIndex = yearArray.indexOf(yearText.textContent + 2);
-
+yearText.textContent = currentYear;
+monthText.textContent = currentMonth;
+dayText.textContent = currrentDay;
+timeText.textContent = hours + ':' + minutes;
 
 //Button triggers
 yearRight.addEventListener('click', () => {
 
-    yearText.textContent = yearArray[currentArrayIndex + 1]
-
+    yearText.textContent = currentYear + 1;
+    currentYear += 1;
 })
 
+yearLeft.addEventListener('click', () => {
 
+    yearText.textContent = currentYear - 1;
+    currentYear -= 1;
+})
 
+monthRight.addEventListener('click', () => {
 
-
+    yearText.textContent = currentYear + 1;
+    currentYear += 1;
+})
 
 
 
