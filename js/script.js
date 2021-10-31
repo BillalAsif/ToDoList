@@ -122,12 +122,12 @@ let monthArray = [
 
 //Using Variables
 yearText.textContent = yearArray[0];
+let currentArrayIndex = yearArray.indexOf(yearText.textContent + 2);
 
 
 //Button triggers
 yearRight.addEventListener('click', () => {
 
-    currentArrayIndex = yearArray.indexOf(yearText.textContent)
     yearText.textContent = yearArray[currentArrayIndex + 1]
 
 })
