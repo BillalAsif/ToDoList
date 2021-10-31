@@ -100,15 +100,37 @@ let addButton = document.getElementById("addButton");
 let calenderButton = document.getElementById("calenderButton");
 let repeatButton = document.getElementById("repeatButton");
 let calenderUI = document.getElementById("calender");
+let yearRight = document.getElementById("yearRight");
+let yearLeft = document.getElementById("yearLeft");
+let monthRight = document.getElementById("monthRight");
+let monthLeft = document.getElementById("monthLeft");
+let daysRight = document.getElementById("daysRight");
+let daysLeft = document.getElementById("daysLeft");
+let timeRight = document.getElementById("timeRight");
+let timeLeft = document.getElementById("timeLeft");
+let yearText = document.getElementById("yearText");
 let date = new Date();
 let currentYear = date.getFullYear();
 let yearArray = [currentYear, currentYear + 1, currentYear + 2, currentYear + 3, currentYear + 4, currentYear + 5];
 let month = date.getMonth();
+let monthArray = [
 
 
+];
+
+
+
+//Using Variables
+yearText.textContent = yearArray[0];
 
 
 //Button triggers
+yearRight.addEventListener('click', () => {
+
+    currentArrayIndex = yearArray.indexOf(yearText.textContent)
+    yearText.textContent = yearArray[currentArrayIndex + 1]
+
+})
 
 
 
