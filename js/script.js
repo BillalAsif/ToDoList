@@ -100,8 +100,10 @@ let addButton = document.getElementById("addButton");
 let calenderButton = document.getElementById("calenderButton");
 let repeatButton = document.getElementById("repeatButton");
 let calenderUI = document.getElementById("calender");
-
-
+let date = new Date();
+let currentYear = date.getFullYear();
+let yearArray = [currentYear, currentYear + 1, currentYear + 2, currentYear + 3, currentYear + 4, currentYear + 5];
+let month = date.getMonth();
 
 
 
