@@ -116,13 +116,14 @@ let date = new Date();
 let hours = date.getHours();
 let minutes = date.getMinutes();
 let currentYear = date.getFullYear();
+let months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "Octobor", "November", "December"];
 let currentMonth = date.getMonth();
-let currrentDay = date.getDay();
+let currrentDay = 1;
 
 
 //Using Variables
 yearText.textContent = currentYear;
-monthText.textContent = currentMonth;
+monthText.textContent = months[currentMonth];
 dayText.textContent = currrentDay;
 timeText.textContent = hours + ':' + minutes;
 
@@ -137,15 +138,28 @@ yearLeft.addEventListener('click', () => {
 
     yearText.textContent = currentYear - 1;
     currentYear -= 1;
+
 })
 
 monthRight.addEventListener('click', () => {
 
-    yearText.textContent = currentYear + 1;
-    currentYear += 1;
+    if (currentMonth == 11) {
+        alert("No months exist after December!")
+    } else {
+        monthText.textContent = months[currentMonth + 1];
+        currentMonth += 1;
+    }
 })
 
+monthLeft.addEventListener('click', () => {
 
+    if (currentMonth == 0) {
+        alert("No months exist before January!")
+    } else {
+        monthText.textContent = months[currentMonth - 1];
+        currentMonth -= 1;
+    }
+})
 
 
 
