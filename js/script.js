@@ -168,15 +168,34 @@ daysLeft.addEventListener('click', () => {
 //Functions
 function getCorrectDaysBasedOnMonthYear(month, year) {
 
-    let daysArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-    let isLeapYear = false; //Calculate if it sully divdes by 4.
+    let daysArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]; ar
+
+    isLeapYear = () => {
+        let leapYearCheck = year / 4;
+        if (leapYearCheck == int) {
+            return true;
+        } else if (leapYearCheck == float) {
+            return false;
+        }
+    } //Calculate if it sully divdes by 4.
+
     if (isLeapYear == true && month == "February") {
         daysArray.pop();
+        daysArray.pop();
+        return daysArray;
     }
     if (isLeapYear == false && month == "February") {
-
+        daysArray.pop();
+        daysArray.pop();
+        daysArray.pop();
+        return daysArray;
     }
-
-    return daysArray;
+    if (month == "January" || month == "March" || month == "May" || month == "July" || month == "September" || month == "November") {
+        return daysArray;
+    }
+    if (month == "February" || month == "April" || month == "June" || month == "August" || month == "October" || month == "December") {
+        daysArray.pop();
+        return daysArray;
+    }
 
 }
