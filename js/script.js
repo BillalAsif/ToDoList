@@ -116,7 +116,7 @@ let date = new Date();
 let hours = date.getHours();
 let minutes = date.getMinutes();
 let currentYear = date.getFullYear();
-let months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "Octobor", "November", "December"];
+let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let currentMonth = date.getMonth();
 let currrentDay = 1;
 
@@ -161,6 +161,22 @@ monthLeft.addEventListener('click', () => {
     }
 })
 
-
+daysLeft.addEventListener('click', () => {
+    getCorrectDaysBasedOnMonthYear(currentMonth, currentYear);
+})
 
 //Functions
+function getCorrectDaysBasedOnMonthYear(month, year) {
+
+    let daysArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+    let isLeapYear = false; //Calculate if it sully divdes by 4.
+    if (isLeapYear == true && month == "February") {
+        daysArray.pop();
+    }
+    if (isLeapYear == false && month == "February") {
+
+    }
+
+    return daysArray;
+
+}
