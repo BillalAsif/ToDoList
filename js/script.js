@@ -118,13 +118,13 @@ let minutes = date.getMinutes();
 let currentYear = date.getFullYear();
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let currentMonth = date.getMonth();
-let currrentDay = 1;
-
+let currrentDay = date.getDay();
+let daysUpdate = getDaysBasedOnMonthYear(months[currentMonth], currentYear);
 
 //Using Variables
 yearText.textContent = currentYear;
 monthText.textContent = months[currentMonth];
-dayText.textContent = currrentDay;
+dayText.textContent = daysUpdate[currrentDay];
 timeText.textContent = hours + ':' + minutes;
 
 //Button triggers
@@ -148,6 +148,7 @@ monthRight.addEventListener('click', () => {
     } else {
         monthText.textContent = months[currentMonth + 1];
         currentMonth += 1;
+        daysUpdate;
     }
 })
 
@@ -158,26 +159,35 @@ monthLeft.addEventListener('click', () => {
     } else {
         monthText.textContent = months[currentMonth - 1];
         currentMonth -= 1;
+        daysUpdate;
     }
 })
 
 daysLeft.addEventListener('click', () => {
-    getCorrectDaysBasedOnMonthYear(currentMonth, currentYear);
+
+    dayText.textContent = daysUpdate[currrentDay - 1];
+    currrentDay -= 1;
+
+})
+
+daysRight.addEventListener('click', () => {
+
+    dayText.textContent = daysUpdate[currrentDay + 1];
+    currrentDay += 1;
+
 })
 
 //Functions
-function getCorrectDaysBasedOnMonthYear(month, year) {
+function getDaysBasedOnMonthYear(month, year) {
 
-    let daysArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]; ar
+    let isLeapYear = false;
+    let daysArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
 
-    isLeapYear = () => {
-        let leapYearCheck = year / 4;
-        if (leapYearCheck == int) {
-            return true;
-        } else if (leapYearCheck == float) {
-            return false;
-        }
-    } //Calculate if it sully divdes by 4.
+    if (year % 4 === 0) {
+        isLeapYear = true;
+    } else {
+        isLeapYear = false;
+    }
 
     if (isLeapYear == true && month == "February") {
         daysArray.pop();
