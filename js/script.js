@@ -114,67 +114,74 @@ let dayText = document.getElementById("dayText");
 let timeText = document.getElementById("timeText");
 let date = new Date();
 let hours = date.getHours();
-let minutes = date.getMinutes();
-let currentYear = date.getFullYear();
+let mins = date.getMinutes();
+let secs = date.getSeconds();
+let year = date.getFullYear();
+let month = date.getMonth();
+let day = date.getDate();
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-let currentMonth = date.getMonth();
-let currrentDay = date.getDay();
 let daysArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
 
 //Using Variables
-yearText.textContent = currentYear;
-monthText.textContent = months[currentMonth];
-dayText.textContent = currrentDay;
-timeText.textContent = hours + ':' + minutes;
+let calenderDate = new Date(year, month, day, hours, mins, secs);
+yearText.textContent = year;
+monthText.textContent = months[month];
+dayText.textContent = day;
+timeText.textContent = hours + ':' + mins;
 
 //Button triggers
 yearRight.addEventListener('click', () => {
 
-    yearText.textContent = currentYear + 1;
-    currentYear += 1;
+    const date = new Date();
+    date.setFullYear(year + 1);
+    const nextYear = date.getFullYear();
+    yearText.textContent = nextYear;
+    year = nextYear;
+
 })
 
 yearLeft.addEventListener('click', () => {
 
-    yearText.textContent = currentYear - 1;
-    currentYear -= 1;
+    const date = new Date();
+    date.setFullYear(year - 1);
+    const prevYear = date.getFullYear();
+    yearText.textContent = prevYear;
+    year = prevYear;
 
 })
 
 monthRight.addEventListener('click', () => {
 
-    if (currentMonth == 11) {
-        alert("No months exist after December!")
-    } else {
-        monthText.textContent = months[currentMonth + 1];
-        currentMonth += 1;
-    }
+    const date = new Date();
+    date.setMonth(month + 1);
+    const nextMonth = date.getMonth();
+    monthText.textContent = months[nextMonth];
+    month = nextMonth;
 })
 
 monthLeft.addEventListener('click', () => {
 
-    if (currentMonth == 0) {
-        alert("No months exist before January!")
-    } else {
-        monthText.textContent = months[currentMonth - 1];
-        currentMonth -= 1;
-    }
+    const date = new Date();
+    date.setMonth(month - 1);
+    const prevMonth = date.getMonth();
+    monthText.textContent = months[prevMonth];
+    month = prevMonth;
+
 })
 
 daysLeft.addEventListener('click', () => {
 
-    getDaysBasedOnMonthYear(months[currentMonth], currentYear)
-    dayText.textContent = daysArray[currrentDay - 1];
-    currrentDay -= 1;
-
+    getDaysBasedOnMonthYear(months[month], year)
+    dayText.textContent = daysArray[day - 1];
+    day -= 1;
 })
 
 daysRight.addEventListener('click', () => {
 
-    getDaysBasedOnMonthYear(months[currentMonth], currentYear)
-    dayText.textContent = daysArray[currrentDay + 1];
-    currrentDay += 1;
+    getDaysBasedOnMonthYear(months[month], year)
+    dayText.textContent = daysArray[day + 1];
+    day += 1;
 
 })
 
