@@ -179,7 +179,7 @@ daysRight.addEventListener('click', () => {
 })
 
 //Functions
-function getDaysBasedOnMonthYear(month, year) { 
+function getDaysBasedOnMonthYear(month, year) {
 
     let isLeapYear = leapYear(year)
 
@@ -193,9 +193,13 @@ function getDaysBasedOnMonthYear(month, year) {
         daysArray.pop();
         daysArray.pop();
     }
-    
+
     if (month == "February" || month == "April" || month == "June" || month == "August" || month == "October" || month == "December") {
         daysArray.pop();
+    }
+
+    if (month == "March" || month == "May" || month == "July" || month == "September" || month == "November") {
+
     }
 
 }
