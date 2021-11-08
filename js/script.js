@@ -115,11 +115,13 @@ let monthText = document.getElementById("monthText");
 let dayText = document.getElementById("dayText");
 let timeText = document.getElementById("timeText");
 var dateNow = new Date();
+dateNow.setHours(09);
+dateNow.setMinutes(30);
+dateNow.setDate(1);
 let hours = dateNow.getHours();
 let mins = dateNow.getMinutes();
 let year = dateNow.getFullYear();
 let month = dateNow.getMonth();
-dateNow.setDate(1);
 let day = dateNow.getDate();
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -206,16 +208,40 @@ daysRight.addEventListener('click', () => {
 
 hourLeft.addEventListener('click', () => {
 
+    const date = new Date();
+    date.setHours(hours - 1);
+    const prevHour = date.getHours();
+    timeText.textContent = prevHour + ':' + mins;;
+    hours = prevHour;
+
 })
 
 hourRight.addEventListener('click', () => {
+
+    const date = new Date();
+    date.setHours(hours + 1);
+    const nextHour = date.getHours();
+    timeText.textContent = nextHour + ':' + mins;;
+    hours = nextHour;
 
 })
 
 minLeft.addEventListener('click', () => {
 
+    const date = new Date();
+    date.setMinutes(mins - 1);
+    const prevMin = date.getMinutes();
+    timeText.textContent = hours + ':' + prevMin;;
+    mins = prevMin;
+
 })
 
 minRight.addEventListener('click', () => {
+
+    const date = new Date();
+    date.setMinutes(mins + 1);
+    const nextMin = date.getMinutes();
+    timeText.textContent = hours + ':' + nextMin;;
+    mins = nextMin;
 
 })
