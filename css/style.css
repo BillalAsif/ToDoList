@@ -130,7 +130,6 @@
 
 .calenderUI div {
     height: 25%;
-    width: 99.9%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -158,7 +157,6 @@
 
 .time {
     background-color:lightpink;
-    text-align: center;
 }
 
 .year :first-child, .month :first-child, .days :first-child, .time :first-child{
@@ -168,10 +166,30 @@
     color: white;
 }
 
-.year :nth-child(3), .month :nth-child(3), .days :nth-child(3), .time :nth-child(3){
+.year :nth-child(3), .month :nth-child(3), .days :nth-child(3), .time :nth-child(5){
     position: absolute;
     font-size: 20px;
     right:18px;
     color: white;
 }
 
+.time .fa-arrow-circle-right {
+    position: absolute;
+    font-size: 20px;
+    right:45px;
+    color: white;
+}
+
+.time .fa-arrow-circle-left{
+    position: absolute;
+    font-size: 20px;
+    left:35px;
+    color: white;
+}
+
+.time p {
+    position: absolute;
+    font-size: 20px;
+    left:101x;
+    color: white;
+}

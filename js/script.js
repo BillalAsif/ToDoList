@@ -106,8 +106,10 @@ let monthRight = document.getElementById("monthRight");
 let monthLeft = document.getElementById("monthLeft");
 let daysRight = document.getElementById("daysRight");
 let daysLeft = document.getElementById("daysLeft");
-let timeRight = document.getElementById("timeRight");
-let timeLeft = document.getElementById("timeLeft");
+let hourRight = document.getElementById("hourRight");
+let hourLeft = document.getElementById("hourLeft");
+let minRight = document.getElementById("minRight");
+let minLeft = document.getElementById("minLeft");
 let yearText = document.getElementById("yearText");
 let monthText = document.getElementById("monthText");
 let dayText = document.getElementById("dayText");
@@ -115,7 +117,6 @@ let timeText = document.getElementById("timeText");
 var dateNow = new Date();
 let hours = dateNow.getHours();
 let mins = dateNow.getMinutes();
-let secs = dateNow.getSeconds();
 let year = dateNow.getFullYear();
 let month = dateNow.getMonth();
 dateNow.setDate(1);
@@ -124,7 +125,7 @@ let months = ["January", "February", "March", "April", "May", "June", "July", "A
 
 
 //Using Variables
-let calenderDate = new Date(year, month, day, hours, mins, secs);
+let calenderDate = new Date(year, month, day, hours, mins);
 yearText.textContent = year;
 monthText.textContent = months[month];
 dayText.textContent = day;
@@ -203,3 +204,18 @@ daysRight.addEventListener('click', () => {
 
 })
 
+hourLeft.addEventListener('click', () => {
+
+})
+
+hourRight.addEventListener('click', () => {
+
+})
+
+minLeft.addEventListener('click', () => {
+
+})
+
+minRight.addEventListener('click', () => {
+
+})
