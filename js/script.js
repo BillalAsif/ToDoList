@@ -134,6 +134,10 @@ dayText.textContent = day;
 timeText.textContent = hours + ':' + mins;
 
 //Button triggers
+calenderButton.addEventListener('click', () => {
+    calenderUI.classList.toggle('hide');
+})
+
 yearRight.addEventListener('click', () => {
 
     const date = new Date();
