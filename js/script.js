@@ -112,15 +112,15 @@ let yearText = document.getElementById("yearText");
 let monthText = document.getElementById("monthText");
 let dayText = document.getElementById("dayText");
 let timeText = document.getElementById("timeText");
-let date = new Date();
-let hours = date.getHours();
-let mins = date.getMinutes();
-let secs = date.getSeconds();
-let year = date.getFullYear();
-let month = date.getMonth();
-let day = date.getDate();
+var dateNow = new Date();
+let hours = dateNow.getHours();
+let mins = dateNow.getMinutes();
+let secs = dateNow.getSeconds();
+let year = dateNow.getFullYear();
+let month = dateNow.getMonth();
+dateNow.setDate(1);
+let day = dateNow.getDate();
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-let daysArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31];
 
 
 //Using Variables
@@ -158,6 +158,11 @@ monthRight.addEventListener('click', () => {
     const nextMonth = date.getMonth();
     monthText.textContent = months[nextMonth];
     month = nextMonth;
+    date.setDate(1);
+    const prevDay = date.getDate();
+    dayText.textContent = prevDay;
+    day = prevDay;
+
 })
 
 monthLeft.addEventListener('click', () => {
@@ -167,60 +172,34 @@ monthLeft.addEventListener('click', () => {
     const prevMonth = date.getMonth();
     monthText.textContent = months[prevMonth];
     month = prevMonth;
+    date.setDate(1);
+    const prevDay = date.getDate();
+    dayText.textContent = prevDay;
+    day = prevDay;
 
 })
 
 daysLeft.addEventListener('click', () => {
 
-    getDaysBasedOnMonthYear(months[month], year)
-    dayText.textContent = daysArray[day - 1];
-    day -= 1;
+    if (day == 1) {
+        day = day;
+    } else {
+        const date = new Date(year, month);
+        date.setDate(day - 1);
+        const prevDay = date.getDate();
+        dayText.textContent = prevDay;
+        day = prevDay;
+    }
+
 })
 
 daysRight.addEventListener('click', () => {
 
-    getDaysBasedOnMonthYear(months[month], year)
-    dayText.textContent = daysArray[day + 1];
-    day += 1;
+    const date = new Date(year, month);
+    date.setDate(day + 1);
+    const nextDay = date.getDate();
+    dayText.textContent = nextDay;
+    day = nextDay;
 
 })
 
-//Functions
-function getDaysBasedOnMonthYear(month, year) {
-
-    let isLeapYear = leapYear(year)
-
-    if (isLeapYear == true && month == "February") {
-        daysArray.pop();
-        daysArray.pop();
-    }
-
-    if (isLeapYear == false && month == "February") {
-        daysArray.pop();
-        daysArray.pop();
-        daysArray.pop();
-    }
-
-    if (month == "February" || month == "April" || month == "June" || month == "August" || month == "October" || month == "December") {
-        daysArray.pop();
-    }
-
-    if (month == "March" || month == "May" || month == "July" || month == "September" || month == "November") {
-
-    }
-
-}
-
-function leapYear(year) {
-
-    if (year % 4 === 0) {
-
-        return true;
-
-    } else {
-
-        return false;
-
-    }
-
-}
