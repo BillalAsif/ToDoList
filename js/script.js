@@ -114,6 +114,7 @@ let yearText = document.getElementById("yearText");
 let monthText = document.getElementById("monthText");
 let dayText = document.getElementById("dayText");
 let timeText = document.getElementById("timeText");
+let repeatBadge = document.getElementById("repeatBadge");
 var dateNow = new Date();
 dateNow.setHours(09);
 dateNow.setMinutes(30);
@@ -124,10 +125,9 @@ let year = dateNow.getFullYear();
 let month = dateNow.getMonth();
 let day = dateNow.getDate();
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
-
-//Using Variables
 let calenderDate = new Date(year, month, day, hours, mins);
+let repeatStatus = "none";
+//Using Variables
 yearText.textContent = year;
 monthText.textContent = months[month];
 dayText.textContent = day;
@@ -247,5 +247,27 @@ minRight.addEventListener('click', () => {
     const nextMin = date.getMinutes();
     timeText.textContent = hours + ':' + nextMin;;
     mins = nextMin;
+
+})
+
+repeatButton.addEventListener('click', () => {
+    switch (repeatStatus) {
+        case "none":
+            repeatStatus = "daily";
+            repeatBadge.textContent = "Daily";
+            break;
+        case "daily":
+            repeatStatus = "weekly";
+            repeatBadge.textContent = "Weekly";
+            break;
+        case "weekly":
+            repeatStatus = "monthly";
+            repeatBadge.textContent = "Monthly";
+            break;
+        case "monthly":
+            repeatStatus = "none";
+            repeatBadge.textContent = "None";
+            break;
+    }
 
 })

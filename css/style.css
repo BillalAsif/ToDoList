@@ -197,3 +197,12 @@
     left:101x;
     color: white;
 }
+
+#repeatBadge {
+    position:absolute;
+    bottom: 2px;
+    right:57px;
+    width:55px;
+    text-align: center;
+    font-weight: 200;
+}
