@@ -128,6 +128,7 @@ yearText.textContent = year;
 monthText.textContent = months[month];
 dayText.textContent = day;
 timeText.textContent = hours + ':' + mins;
+let calenderDate = new Date(year, month, day, hours, mins);
 
 //Calender Button triggers
 calenderButton.addEventListener('click', () => {
@@ -141,7 +142,7 @@ yearRight.addEventListener('click', () => {
     const nextYear = date.getFullYear();
     yearText.textContent = nextYear;
     year = nextYear;
-
+    calenderDate = new Date(year, month, day, hours, mins);
 })
 
 yearLeft.addEventListener('click', () => {
@@ -151,6 +152,7 @@ yearLeft.addEventListener('click', () => {
     const prevYear = date.getFullYear();
     yearText.textContent = prevYear;
     year = prevYear;
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -165,6 +167,7 @@ monthRight.addEventListener('click', () => {
     const prevDay = date.getDate();
     dayText.textContent = prevDay;
     day = prevDay;
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -179,6 +182,7 @@ monthLeft.addEventListener('click', () => {
     const prevDay = date.getDate();
     dayText.textContent = prevDay;
     day = prevDay;
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -192,6 +196,7 @@ daysLeft.addEventListener('click', () => {
         const prevDay = date.getDate();
         dayText.textContent = prevDay;
         day = prevDay;
+        calenderDate = new Date(year, month, day, hours, mins);
     }
 
 })
@@ -203,6 +208,7 @@ daysRight.addEventListener('click', () => {
     const nextDay = date.getDate();
     dayText.textContent = nextDay;
     day = nextDay;
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -213,6 +219,7 @@ hourLeft.addEventListener('click', () => {
     const prevHour = date.getHours();
     timeText.textContent = prevHour + ':' + mins;;
     hours = prevHour;
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -223,6 +230,7 @@ hourRight.addEventListener('click', () => {
     const nextHour = date.getHours();
     timeText.textContent = nextHour + ':' + mins;;
     hours = nextHour;
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -233,6 +241,7 @@ minLeft.addEventListener('click', () => {
     const prevMin = date.getMinutes();
     timeText.textContent = hours + ':' + prevMin;;
     mins = prevMin;
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -243,6 +252,7 @@ minRight.addEventListener('click', () => {
     const nextMin = date.getMinutes();
     timeText.textContent = hours + ':' + nextMin;;
     mins = nextMin;
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -272,14 +282,13 @@ repeatButton.addEventListener('click', () => {
 
 })
 
-//Task save button and input field
+//Task save button and input field and HTML5 Storage - to store user chosen date and repeat status for new task
 let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
 
 saveTask.addEventListener('click', () => {
-    alert(newTask.value);
+
 })
 
 
-//HTML5 Storage - to store user chosen date and repeat status for new task
-let calenderDate = new Date(year, month, day, hours, mins);
+
