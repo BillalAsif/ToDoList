@@ -128,7 +128,7 @@ yearText.textContent = year;
 monthText.textContent = months[month];
 dayText.textContent = day;
 timeText.textContent = hours + ':' + mins;
-let calenderDate = new Date(year, month, day, hours, mins);
+let calenderDate = new Date();
 
 //Calender Button triggers
 calenderButton.addEventListener('click', () => {
@@ -289,13 +289,19 @@ let taskStatus = "new";
 
 saveTask.addEventListener('click', () => {
 
-    localStorage.setItem(newTask.value, calenderDate, repeatStatus, taskStatus);
+    let currentTask = newTask.value;
+    let taskInfoArray = [currentTask, calenderDate, repeatStatus, taskStatus];
+    localStorage.setItem("1", JSON.stringify(taskInfoArray));
+    calenderUI.classList.remove("hide");
+    calenderUI.classList.add("hide");
     newTask.value = "";
-    calenderUI.classList.remove(hide);
-    calenderUI.classList.add(hide);
-
+    window.location.reload(true);
 
 })
+
+document.getElementById("result").textContent = localStorage.getItem("1");
+
+
 
 
 
