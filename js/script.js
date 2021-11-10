@@ -282,11 +282,18 @@ repeatButton.addEventListener('click', () => {
 
 })
 
-//Task save button and input field and HTML5 Storage - to store user chosen date and repeat status for new task
+//Task save button and input field and HTML5 local storage - to store user chosen date and repeat status for new task
 let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
+let taskStatus = "new";
 
 saveTask.addEventListener('click', () => {
+
+    localStorage.setItem(newTask.value, calenderDate, repeatStatus, taskStatus);
+    newTask.value = "";
+    calenderUI.classList.remove(hide);
+    calenderUI.classList.add(hide);
+
 
 })
 
