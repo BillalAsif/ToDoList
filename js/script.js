@@ -95,10 +95,7 @@ function timerRunState(state) {
 
 //Task Code ----------------------------------------------
 //Variables
-let newTaskField = document.getElementById("newTask");
-let addButton = document.getElementById("addButton");
 let calenderButton = document.getElementById("calenderButton");
-let repeatButton = document.getElementById("repeatButton");
 let calenderUI = document.getElementById("calender");
 let yearRight = document.getElementById("yearRight");
 let yearLeft = document.getElementById("yearLeft");
@@ -114,7 +111,6 @@ let yearText = document.getElementById("yearText");
 let monthText = document.getElementById("monthText");
 let dayText = document.getElementById("dayText");
 let timeText = document.getElementById("timeText");
-let repeatBadge = document.getElementById("repeatBadge");
 var dateNow = new Date();
 dateNow.setHours(09);
 dateNow.setMinutes(30);
@@ -125,15 +121,15 @@ let year = dateNow.getFullYear();
 let month = dateNow.getMonth();
 let day = dateNow.getDate();
 let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-let calenderDate = new Date(year, month, day, hours, mins);
 let repeatStatus = "none";
+
 //Using Variables
 yearText.textContent = year;
 monthText.textContent = months[month];
 dayText.textContent = day;
 timeText.textContent = hours + ':' + mins;
 
-//Button triggers
+//Calender Button triggers
 calenderButton.addEventListener('click', () => {
     calenderUI.classList.toggle('hide');
 })
@@ -250,6 +246,10 @@ minRight.addEventListener('click', () => {
 
 })
 
+//Repeat button
+let repeatButton = document.getElementById("repeatButton");
+let repeatBadge = document.getElementById("repeatBadge");
+
 repeatButton.addEventListener('click', () => {
     switch (repeatStatus) {
         case "none":
@@ -271,3 +271,15 @@ repeatButton.addEventListener('click', () => {
     }
 
 })
+
+//Task save button and input field
+let newTask = document.getElementById("newTask");
+let saveTask = document.getElementById("saveTask");
+
+saveTask.addEventListener('click', () => {
+    alert(newTask.value);
+})
+
+
+//HTML5 Storage - to store user chosen date and repeat status for new task
+let calenderDate = new Date(year, month, day, hours, mins);

@@ -200,9 +200,15 @@
 
 #repeatBadge {
     position:absolute;
-    bottom: 2px;
+    top: 5px;
     right:57px;
     width:55px;
     text-align: center;
-    font-weight: 200;
+    color: black;
+    background-color: none;
+    font-weight:normal;
+}
+
+#saveTask {
+    color: green;
 }
