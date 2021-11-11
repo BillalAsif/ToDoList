@@ -286,7 +286,6 @@ repeatButton.addEventListener('click', () => {
 let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
 let taskStatus = "new";
-let t
 
 displayTasks();
 
