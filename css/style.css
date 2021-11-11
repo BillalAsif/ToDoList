@@ -212,3 +212,19 @@
 #saveTask {
     color: green;
 }
+
+.result {
+    text-align: left;
+    color:black;
+}
+
+.taskText {
+    font-style: normal!important;
+    cursor:default!important;
+}
+
+.del {
+    margin-top: 5px;
+    float: right;
+    color: red;
+}

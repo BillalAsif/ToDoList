@@ -286,21 +286,30 @@ repeatButton.addEventListener('click', () => {
 let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
 let taskStatus = "new";
+let t
+
+displayTasks();
 
 saveTask.addEventListener('click', () => {
 
     let currentTask = newTask.value;
     let taskInfoArray = [currentTask, calenderDate, repeatStatus, taskStatus];
-    localStorage.setItem("1", JSON.stringify(taskInfoArray));
+    localStorage.setItem("Tasks", JSON.stringify(taskInfoArray));
     calenderUI.classList.remove("hide");
     calenderUI.classList.add("hide");
-    newTask.value = "";
-    window.location.reload(true);
+    newTask.value = ""
+    displayTasks(taskInfoArray)
 
 })
 
-document.getElementById("result").textContent = localStorage.getItem("1");
+//functions
 
+function displayTasks() {
+
+    document.getElementById("result").innerHTML = "<i class='taskText'>" + JSON.parse(localStorage.getItem("Tasks")) + "</i><i class='fas fa-times del'></i>";
+
+
+}
 
 
 
