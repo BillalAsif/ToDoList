@@ -128,7 +128,7 @@ yearText.textContent = year;
 monthText.textContent = months[month];
 dayText.textContent = day;
 timeText.textContent = hours + ':' + mins;
-let calenderDate = new Date();
+let calenderDate = new Date().toDateString();
 
 //Calender Button triggers
 calenderButton.addEventListener('click', () => {
@@ -142,7 +142,7 @@ yearRight.addEventListener('click', () => {
     const nextYear = date.getFullYear();
     yearText.textContent = nextYear;
     year = nextYear;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 })
 
 yearLeft.addEventListener('click', () => {
@@ -152,7 +152,7 @@ yearLeft.addEventListener('click', () => {
     const prevYear = date.getFullYear();
     yearText.textContent = prevYear;
     year = prevYear;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 
 })
 
@@ -167,7 +167,7 @@ monthRight.addEventListener('click', () => {
     const prevDay = date.getDate();
     dayText.textContent = prevDay;
     day = prevDay;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 
 })
 
@@ -182,7 +182,7 @@ monthLeft.addEventListener('click', () => {
     const prevDay = date.getDate();
     dayText.textContent = prevDay;
     day = prevDay;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 
 })
 
@@ -196,7 +196,7 @@ daysLeft.addEventListener('click', () => {
         const prevDay = date.getDate();
         dayText.textContent = prevDay;
         day = prevDay;
-        calenderDate = new Date(year, month, day, hours, mins);
+        calenderDate = new Date(year, month, day, hours, mins).toDateString();
     }
 
 })
@@ -208,7 +208,7 @@ daysRight.addEventListener('click', () => {
     const nextDay = date.getDate();
     dayText.textContent = nextDay;
     day = nextDay;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 
 })
 
@@ -219,7 +219,7 @@ hourLeft.addEventListener('click', () => {
     const prevHour = date.getHours();
     timeText.textContent = prevHour + ':' + mins;;
     hours = prevHour;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 
 })
 
@@ -230,7 +230,7 @@ hourRight.addEventListener('click', () => {
     const nextHour = date.getHours();
     timeText.textContent = nextHour + ':' + mins;;
     hours = nextHour;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 
 })
 
@@ -241,7 +241,7 @@ minLeft.addEventListener('click', () => {
     const prevMin = date.getMinutes();
     timeText.textContent = hours + ':' + prevMin;;
     mins = prevMin;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 
 })
 
@@ -252,7 +252,7 @@ minRight.addEventListener('click', () => {
     const nextMin = date.getMinutes();
     timeText.textContent = hours + ':' + nextMin;;
     mins = nextMin;
-    calenderDate = new Date(year, month, day, hours, mins);
+    calenderDate = new Date(year, month, day, hours, mins).toDateString();
 
 })
 
@@ -286,13 +286,15 @@ repeatButton.addEventListener('click', () => {
 let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
 let taskStatus = "new";
+let taskInfoArray = [];
+
 
 displayTasks();
 
 saveTask.addEventListener('click', () => {
 
     let currentTask = newTask.value;
-    let taskInfoArray = [currentTask, calenderDate, repeatStatus, taskStatus];
+    taskInfoArray.push(currentTask, calenderDate, repeatStatus, taskStatus);
     localStorage.setItem("Tasks", JSON.stringify(taskInfoArray));
     calenderUI.classList.remove("hide");
     calenderUI.classList.add("hide");
@@ -305,7 +307,7 @@ saveTask.addEventListener('click', () => {
 
 function displayTasks() {
 
-    document.getElementById("result").innerHTML = "<i class='taskText'>" + JSON.parse(localStorage.getItem("Tasks")) + "</i><i class='fas fa-times del'></i>";
+    document.getElementById("result").innerHTML = "<div class='task result'><i class='taskText'>" + JSON.parse(localStorage.getItem("Tasks")) + "</i><i class='fas fa-times del'></i></div>";
 
 
 }
