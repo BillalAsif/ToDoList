@@ -307,6 +307,12 @@ saveTask.addEventListener('click', () => {
 
 function displayTasks() {
 
+    let createDiv = document.createElement("div");
+    let createI = document.createElement("i");
+    let createDelButton = document.createElement("i");
+
+
+
     document.getElementById("result").innerHTML = "<div class='task result'><i class='taskText'>" + JSON.parse(localStorage.getItem("Tasks")) + "</i><i class='fas fa-times del'></i></div>";
 
 
