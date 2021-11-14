@@ -287,16 +287,21 @@ let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
 let taskStatus = "new";
 let taskInfo = {
-    task: newTask.value,
-    date: calenderDate,
-    repeat: repeatStatus,
-    taskState: taskStatus
+    task: null,
+    date: null,
+    repeat: null,
+    taskState: null
 };
 let keys = window.localStorage.length;
 
 displayTasks();
 
 saveTask.addEventListener('click', () => {
+
+    taskInfo.task = newTask.value;
+    taskInfo.date = calenderDate;
+    taskInfo.repeat = repeatStatus;
+    taskInfo.taskState = taskStatus;
 
     window.localStorage.setItem("Task" + keys, JSON.stringify(taskInfo));
     calenderUI.classList.remove("hide");
@@ -311,7 +316,7 @@ saveTask.addEventListener('click', () => {
 
 function displayTasks() {
 
-    for (let i = 1; i <= keys; i++) {
+    for (let i = 0; i <= keys; i++) {
 
         let createDiv = document.createElement("div");
         let createI = document.createElement("i");
