@@ -286,22 +286,24 @@ repeatButton.addEventListener('click', () => {
 let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
 let taskStatus = "new";
+let taskInfo = {
+    task: newTask.value,
+    date: calenderDate,
+    repeat: repeatStatus,
+    taskState: taskStatus
+};
+let keys = window.localStorage.length;
 
 displayTasks();
 
 saveTask.addEventListener('click', () => {
 
-    let taskInfo = {
-        task: newTask.value,
-        date: calenderDate,
-        repeat: repeatStatus,
-        taskState: taskStatus
-    };
-    window.localStorage.setItem("Tasks", JSON.stringify(taskInfo));
+    window.localStorage.setItem("Task" + keys, JSON.stringify(taskInfo));
     calenderUI.classList.remove("hide");
     calenderUI.classList.add("hide");
     displayTasks()
     newTask.value = ""
+    keys++;
 
 })
 
@@ -309,19 +311,25 @@ saveTask.addEventListener('click', () => {
 
 function displayTasks() {
 
-    let createDiv = document.createElement("div");
-    let createI = document.createElement("i");
-    let createDelButton = document.createElement("i");
-    createDiv.classList.add("task");
-    createDiv.classList.add("result");
-    createI.classList.add("taskText");
-    createDelButton.classList.add("fas");
-    createDelButton.classList.add("fa-times");
-    createDelButton.classList.add("del");
-    createDiv.appendChild(createI);
-    createI.innerHTML = JSON.parse(window.localStorage.getItem('Tasks'));
-    createDiv.appendChild(createDelButton);
-    document.getElementById("result").appendChild(createDiv);
+    for (let i = 1; i <= keys; i++) {
+
+        let createDiv = document.createElement("div");
+        let createI = document.createElement("i");
+        let createDelButton = document.createElement("i");
+        createDiv.classList.add("task");
+        createDiv.classList.add("result");
+        createDiv.classList.add("removeAnchor");
+        createI.classList.add("taskText");
+        createI.classList.add("removeAnchor");
+        createDelButton.classList.add("fas");
+        createDelButton.classList.add("fa-times");
+        createDelButton.classList.add("del");
+        createDelButton.classList.add("removeAnchor");
+        createDiv.appendChild(createI);
+        createI.innerHTML = JSON.parse(window.localStorage.getItem('Task' + i));
+        createDiv.appendChild(createDelButton);
+        document.getElementById("result").appendChild(createDiv);
+    }
 
 }
 
