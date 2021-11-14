@@ -286,20 +286,22 @@ repeatButton.addEventListener('click', () => {
 let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
 let taskStatus = "new";
-let taskInfoArray = [];
-
 
 displayTasks();
 
 saveTask.addEventListener('click', () => {
 
-    let currentTask = newTask.value;
-    taskInfoArray.push(currentTask, calenderDate, repeatStatus, taskStatus);
-    localStorage.setItem("Tasks", JSON.stringify(taskInfoArray));
+    let taskInfo = {
+        task: newTask.value,
+        date: calenderDate,
+        repeat: repeatStatus,
+        taskState: taskStatus
+    };
+    window.localStorage.setItem("Tasks", JSON.stringify(taskInfo));
     calenderUI.classList.remove("hide");
     calenderUI.classList.add("hide");
+    displayTasks()
     newTask.value = ""
-    displayTasks(taskInfoArray)
 
 })
 
@@ -310,11 +312,16 @@ function displayTasks() {
     let createDiv = document.createElement("div");
     let createI = document.createElement("i");
     let createDelButton = document.createElement("i");
-
-
-
-    document.getElementById("result").innerHTML = "<div class='task result'><i class='taskText'>" + JSON.parse(localStorage.getItem("Tasks")) + "</i><i class='fas fa-times del'></i></div>";
-
+    createDiv.classList.add("task");
+    createDiv.classList.add("result");
+    createI.classList.add("taskText");
+    createDelButton.classList.add("fas");
+    createDelButton.classList.add("fa-times");
+    createDelButton.classList.add("del");
+    createDiv.appendChild(createI);
+    createI.innerHTML = JSON.parse(window.localStorage.getItem('Tasks'));
+    createDiv.appendChild(createDelButton);
+    document.getElementById("result").appendChild(createDiv);
 
 }
 
