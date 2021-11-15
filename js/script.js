@@ -286,22 +286,19 @@ repeatButton.addEventListener('click', () => {
 let newTask = document.getElementById("newTask");
 let saveTask = document.getElementById("saveTask");
 let taskStatus = "new";
-let taskInfo = {
-    task: null,
-    date: null,
-    repeat: null,
-    taskState: null
-};
-let key = window.localStorage.length;
+let key = localStorage.length;
 
 displayTasks();
 
 saveTask.addEventListener('click', () => {
 
-    taskInfo.task = newTask.value;
-    taskInfo.date = calenderDate;
-    taskInfo.repeat = repeatStatus;
-    taskInfo.taskState = taskStatus;
+    let taskInfo = [];
+
+    taskInfo.push(key + 1);
+    taskInfo.push(newTask.value);
+    taskInfo.push(calenderDate);
+    taskInfo.push(repeatStatus);
+    taskInfo.push(taskStatus);
 
     window.localStorage.setItem("Task" + key, JSON.stringify(taskInfo));
     calenderUI.classList.remove("hide");
@@ -315,30 +312,32 @@ saveTask.addEventListener('click', () => {
 
 function displayTasks() {
 
-        document.getElementById("result").innerHTML = "";
+    document.getElementById("result").innerHTML = "";
 
-        for (let i = 0; i < window.localStorage.length; i++) {
+    for (let i = 0; i < localStorage.length; i++) {
 
-            let createDiv = document.createElement("div");
-            let createI = document.createElement("i");
-            let createDelButton = document.createElement("i");
-            createDiv.classList.add("task");
-            createDiv.classList.add("result");
-            createDiv.classList.add("removeAnchor");
-            createI.classList.add("taskText");
-            createI.classList.add("removeAnchor");
-            createDelButton.classList.add("fas");
-            createDelButton.classList.add("fa-times");
-            createDelButton.classList.add("del");
-            createDelButton.classList.add("removeAnchor");
-            createDiv.appendChild(createI);
-            createI.innerHTML = JSON.parse(window.localStorage.getItem('Task' + key));
-            createDiv.appendChild(createDelButton);
-            document.getElementById("result").appendChild(createDiv);
-        }
+        let createDiv = document.createElement("div");
+        let createI = document.createElement("i");
+        let createDelButton = document.createElement("i");
+        createDiv.classList.add("task");
+        createDiv.classList.add("result");
+        createI.classList.add("taskText");
+        createDelButton.classList.add("fas");
+        createDelButton.classList.add("fa-times");
+        createDelButton.classList.add("del");
+        createDelButton.addEventListener('click', (e) => { delTask(e) })
+        createDiv.appendChild(createI);
+        createI.innerHTML = JSON.parse(window.localStorage.getItem('Task' + i));
+        createDiv.appendChild(createDelButton);
+        document.getElementById("result").appendChild(createDiv);
+    }
 
 }
 
+function delTask(e, i) {
+    e.target.parentElement.remove();
+    localStorage.removeItem('Task' + e.previousElementSibling);
+}
 
 
 
