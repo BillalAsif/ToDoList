@@ -300,7 +300,7 @@ saveTask.addEventListener('click', () => {
     taskInfo.push(repeatStatus);
     taskInfo.push(taskStatus);
 
-    window.localStorage.setItem("Task" + key, JSON.stringify(taskInfo));
+    localStorage.setItem("Task" + key, JSON.stringify(taskInfo));
     calenderUI.classList.remove("hide");
     calenderUI.classList.add("hide");
     displayTasks()
@@ -334,10 +334,9 @@ function displayTasks() {
 
 }
 
-function delTask(e, i) {
+function delTask(e) {
     e.target.parentElement.remove();
-    localStorage.removeItem('Task' + e.previousElementSibling);
+    let arrNum = e.target.previousElementSibling.textContent[0] - 1;
+    localStorage.removeItem('Task' + arrNum);
+
 }
-
-
-
