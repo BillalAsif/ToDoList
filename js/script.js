@@ -288,9 +288,18 @@ let saveTask = document.getElementById("saveTask");
 let taskStatus = "new";
 let key = localStorage.length;
 
+
 displayTasks();
 
 saveTask.addEventListener('click', () => {
+
+    saveTasks();
+
+})
+
+//functions
+
+function saveTasks() {
 
     let taskInfo = [];
 
@@ -300,43 +309,67 @@ saveTask.addEventListener('click', () => {
     taskInfo.push(repeatStatus);
     taskInfo.push(taskStatus);
 
-    localStorage.setItem("Task" + key, JSON.stringify(taskInfo));
+    localStorage.setItem("Task" + (key + 1), JSON.stringify(taskInfo));
     calenderUI.classList.remove("hide");
     calenderUI.classList.add("hide");
-    displayTasks()
-    newTask.value = ""
-    key++
-})
-
-//functions
+    displayTasks();
+    newTask.value = "";
+    key++;
+}
 
 function displayTasks() {
 
     document.getElementById("result").innerHTML = "";
 
-    for (let i = 0; i < localStorage.length; i++) {
+    {
+        Object.keys(localStorage).forEach(key => {
+            //console.log(key, localStorage[key]);
+            let createDiv = document.createElement("div");
+            let createI = document.createElement("i");
+            let createDelButton = document.createElement("i");
+            createDiv.classList.add("task");
+            createDiv.classList.add("result");
+            createI.classList.add("taskText");
+            createDelButton.classList.add("fas");
+            createDelButton.classList.add("fa-times");
+            createDelButton.classList.add("del");
+            createDelButton.addEventListener('click', (e) => { delTask(e) })
+            createDiv.appendChild(createI);
+            createI.innerHTML = JSON.parse(localStorage.getItem(key));
+            createDiv.appendChild(createDelButton);
+            document.getElementById("result").appendChild(createDiv);
+        })
 
-        let createDiv = document.createElement("div");
-        let createI = document.createElement("i");
-        let createDelButton = document.createElement("i");
-        createDiv.classList.add("task");
-        createDiv.classList.add("result");
-        createI.classList.add("taskText");
-        createDelButton.classList.add("fas");
-        createDelButton.classList.add("fa-times");
-        createDelButton.classList.add("del");
-        createDelButton.addEventListener('click', (e) => { delTask(e) })
-        createDiv.appendChild(createI);
-        createI.innerHTML = JSON.parse(window.localStorage.getItem('Task' + i));
-        createDiv.appendChild(createDelButton);
-        document.getElementById("result").appendChild(createDiv);
     }
 
 }
 
 function delTask(e) {
     e.target.parentElement.remove();
-    let arrNum = e.target.previousElementSibling.textContent[0] - 1;
+    let arrNum = e.target.previousElementSibling.textContent[0];
     localStorage.removeItem('Task' + arrNum);
 
+    for (let i = arrNum; i < localStorage.length; i++) {
+
+
+        console.log(localStorage.getItem('Task' + i));
+
+
+
+    }
+
+    //key--;
+}
+
+function allStorage() {
+
+    var values = [],
+        keys = Object.keys(localStorage),
+        i = keys.length;
+
+    while (i--) {
+        values.push(localStorage.getItem(keys[i]));
+    }
+
+    return values;
 }
