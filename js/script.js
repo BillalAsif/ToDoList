@@ -1,4 +1,5 @@
 //Timer Codes---------------------------------------------
+
 //Variables
 let isPaused = false;
 let counterDisplay = document.getElementById("counter");
@@ -49,7 +50,6 @@ pauseButton.addEventListener('click', () => {
     timerRunState('pause');
 });
 
-// Error on this function - to reolve add 1 sec delay before excute
 resetButton.addEventListener('click', () => {
     isPaused = true;
     timer = 0 / timer;
@@ -283,13 +283,76 @@ repeatButton.addEventListener('click', () => {
 })
 
 //Task save button and input field and HTML5 local storage - to store user chosen date and repeat status for new task
-let newTask = document.getElementById("newTask");
-let saveTask = document.getElementById("saveTask");
+let saveTaskButton = document.getElementById("saveTask");
+let deleteButton = document.querySelector(".del");
 let taskStatus = "new";
 let key = localStorage.length;
+let retrieveTasks = JSON.parse(localStorage.getItem('Task'));
+// variables included from calender code and repeat button code
+// calenderDate
+// repeatSatatus
+
+//Classes
+class Task {
+
+    constructor(title, date, repeat, status) {
+
+        this.title = document.getElementById("newTask").value;
+        this.date = calenderDate;
+        this.repeat = repeatStatus;
+        this.status = taskStatus;
+
+    }
+
+}
 
 
-displayTasks();
+//Button events
+saveTaskButton.addEventListener('click', () => {
+
+    addTask();
+    document.getElementById("newTask").value = "";
+
+});
+
+deleteButton.addEventListener('click', (event) => {
+
+    event.target.parentElement.remove();
+
+})
+
+//Functions
+function addTask() {
+
+    const newTask = new Task;
+    localStorage.setItem('Task', JSON.stringify(newTask));
+    displayTask(newTask.title, newTask.date, newTask.repeat, newTask.status);
+}
+
+function deleteTask(event) {
+
+    event.target.parentElement.remove();
+
+}
+
+
+
+function displayTask(title, date, repeat, stat) {
+
+    document.getElementById("result").innerHTML = `
+   <div class='result'>
+    <i class='badge bg-secondary task-i'>${stat}</i>
+    <i class='badge bg-primary task-i'>${repeat}</i>
+    <i class='taskText'>${title}</i>
+    <i class='dateText'>${date}</i>
+    <i class='fas fa-times del'></i>
+   </div>
+   `;
+
+}
+
+
+/* displayTasks();
 
 saveTask.addEventListener('click', () => {
 
@@ -372,4 +435,4 @@ function allStorage() {
     }
 
     return values;
-}
+} */
