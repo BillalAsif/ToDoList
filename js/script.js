@@ -287,10 +287,13 @@ let saveTaskButton = document.getElementById("saveTask");
 let deleteButton = document.querySelector(".del");
 let taskStatus = "new";
 let key = localStorage.length;
-let retrieveTasks = JSON.parse(localStorage.getItem('Task'));
-// variables included from calender code and repeat button code
-// calenderDate
-// repeatSatatus
+
+if (key === 0) {
+    const newTask = [];
+    localStorage.setItem('Task', JSON.stringify(newTask));
+}
+
+displayTasks();
 
 //Classes
 class Task {
@@ -306,7 +309,6 @@ class Task {
 
 }
 
-
 //Button events
 saveTaskButton.addEventListener('click', () => {
 
@@ -318,113 +320,43 @@ saveTaskButton.addEventListener('click', () => {
 //Functions
 function addTask() {
 
+    const taskArr = JSON.parse(localStorage.getItem('Task'));
     const newTask = new Task;
-    localStorage.setItem('Task', JSON.stringify(newTask));
-    displayTask(newTask.title, newTask.date, newTask.repeat, newTask.status);
+    taskArr.push(newTask);
+    localStorage.setItem('Task', JSON.stringify(taskArr));
+
 }
 
 function deleteTask(event) {
 
+    const sisElement = event.target.previousSibling.innerHTML[0];
+    const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const index = taskArr.indexOf(sisElement);
+    taskArr.splice(index, 1);
+    localStorage.setItem('Task', JSON.stringify(taskArr));
     event.target.parentElement.remove();
 
-}
 
-function displayTask(title, date, repeat, stat) {
-
-    document.getElementById("result").innerHTML = `
-   <div class='result'>
-    <i class='badge bg-secondary task-i'>${stat}</i>
-    <i class='badge bg-primary task-i'>${repeat}</i>
-    <i class='taskText'>${title}</i>
-    <i class='dateText'>${date}</i>
-    <i class='fas fa-times del' onclick="deleteTask(event)"></i>
-   </div>
-   `;
-
-}
-
-
-/* displayTasks();
-
-saveTask.addEventListener('click', () => {
-
-    saveTasks();
-
-})
-
-//functions
-
-function saveTasks() {
-
-    let taskInfo = [];
-
-    taskInfo.push(key + 1);
-    taskInfo.push(newTask.value);
-    taskInfo.push(calenderDate);
-    taskInfo.push(repeatStatus);
-    taskInfo.push(taskStatus);
-
-    localStorage.setItem("Task" + (key + 1), JSON.stringify(taskInfo));
-    calenderUI.classList.remove("hide");
-    calenderUI.classList.add("hide");
-    displayTasks();
-    newTask.value = "";
-    key++;
 }
 
 function displayTasks() {
 
-    document.getElementById("result").innerHTML = "";
+    const taskArr = JSON.parse(localStorage.getItem('Task'));
 
-    {
-        Object.keys(localStorage).forEach(key => {
-            //console.log(key, localStorage[key]);
-            let createDiv = document.createElement("div");
-            let createI = document.createElement("i");
-            let createDelButton = document.createElement("i");
-            createDiv.classList.add("task");
-            createDiv.classList.add("result");
-            createI.classList.add("taskText");
-            createDelButton.classList.add("fas");
-            createDelButton.classList.add("fa-times");
-            createDelButton.classList.add("del");
-            createDelButton.addEventListener('click', (e) => { delTask(e) })
-            createDiv.appendChild(createI);
-            createI.innerHTML = JSON.parse(localStorage.getItem(key));
-            createDiv.appendChild(createDelButton);
-            document.getElementById("result").appendChild(createDiv);
-        })
+    for (let i = 0; i < taskArr.length; i++) {
+        const result = document.getElementById("result");
+        const div = document.createElement("div");
+        div.classList.add("result");
+        const taskText = `
+            <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
+            <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
+            <i class='taskText'>${taskArr[i].title}</i>
+            <i class='dateText'>${taskArr[i].date}</i>
+            <i class='fas fa-times del' onclick="deleteTask(event)"></i>
+             `;
+        div.innerHTML = taskText;
+        result.appendChild(div);
 
     }
 
 }
-
-function delTask(e) {
-    e.target.parentElement.remove();
-    let arrNum = e.target.previousElementSibling.textContent[0];
-    localStorage.removeItem('Task' + arrNum);
-
-    for (let i = arrNum; i < localStorage.length; i++) {
-
-
-        console.log(localStorage.getItem('Task' + i));
-
-
-
-    }
-
-    //key--;
-}
-
-function allStorage() {
-
-    var values = [],
-        keys = Object.keys(localStorage),
-        i = keys.length;
-
-    while (i--) {
-        values.push(localStorage.getItem(keys[i]));
-    }
-
-    return values;
-} */
