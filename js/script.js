@@ -315,12 +315,6 @@ saveTaskButton.addEventListener('click', () => {
 
 });
 
-deleteButton.addEventListener('click', (event) => {
-
-    event.target.parentElement.remove();
-
-})
-
 //Functions
 function addTask() {
 
@@ -335,8 +329,6 @@ function deleteTask(event) {
 
 }
 
-
-
 function displayTask(title, date, repeat, stat) {
 
     document.getElementById("result").innerHTML = `
@@ -345,7 +337,7 @@ function displayTask(title, date, repeat, stat) {
     <i class='badge bg-primary task-i'>${repeat}</i>
     <i class='taskText'>${title}</i>
     <i class='dateText'>${date}</i>
-    <i class='fas fa-times del'></i>
+    <i class='fas fa-times del' onclick="deleteTask(event)"></i>
    </div>
    `;
 
