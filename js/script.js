@@ -314,6 +314,8 @@ saveTaskButton.addEventListener('click', () => {
 
     addTask();
     document.getElementById("newTask").value = "";
+    calenderUI.classList.remove('hide');
+    calenderUI.classList.add('hide');
 
 });
 
@@ -330,13 +332,12 @@ function addTask() {
 
 function deleteTask(event) {
 
-    const sisElement = event.target.parentElement.childElement.innerHTML[0];
-    console.log(sisElement)
-/*     const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const sisElement = event.target.previousElementSibling.previousElementSibling.innerHTML;
+    const taskArr = JSON.parse(localStorage.getItem('Task'));
     const index = taskArr.indexOf(sisElement);
     taskArr.splice(index, 1);
     localStorage.setItem('Task', JSON.stringify(taskArr));
-    event.target.parentElement.remove(); */
+    event.target.parentElement.remove();
 
 
 }
