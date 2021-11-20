@@ -324,17 +324,19 @@ function addTask() {
     const newTask = new Task;
     taskArr.push(newTask);
     localStorage.setItem('Task', JSON.stringify(taskArr));
+    displayTasks();
 
 }
 
 function deleteTask(event) {
 
-    const sisElement = event.target.previousSibling.innerHTML[0];
-    const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const sisElement = event.target.parentElement.childElement.innerHTML[0];
+    console.log(sisElement)
+/*     const taskArr = JSON.parse(localStorage.getItem('Task'));
     const index = taskArr.indexOf(sisElement);
     taskArr.splice(index, 1);
     localStorage.setItem('Task', JSON.stringify(taskArr));
-    event.target.parentElement.remove();
+    event.target.parentElement.remove(); */
 
 
 }
@@ -342,9 +344,10 @@ function deleteTask(event) {
 function displayTasks() {
 
     const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const result = document.getElementById("result");
+    result.innerHTML = "";
 
     for (let i = 0; i < taskArr.length; i++) {
-        const result = document.getElementById("result");
         const div = document.createElement("div");
         div.classList.add("result");
         const taskText = `
