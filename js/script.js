@@ -339,7 +339,6 @@ function deleteTask(event) {
     localStorage.setItem('Task', JSON.stringify(taskArr));
     event.target.parentElement.remove();
 
-
 }
 
 function displayTasks() {
@@ -362,5 +361,21 @@ function displayTasks() {
         result.appendChild(div);
 
     }
+
+}
+
+function sortTaskByDate() {
+
+    const taskArr = JSON.parse(localStorage.getItem('Task'));
+
+    const newTaskArr = taskArr.map(sort);
+
+    function sort(task) {
+
+        return task.date;
+
+    }
+
+    console.log(newTaskArr);
 
 }
