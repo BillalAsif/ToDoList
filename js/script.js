@@ -372,8 +372,11 @@ function sortTaskByDate() {
         
         
         const taskDate = element.date;
+        const date = new Date(taskDate);
+        const arr = [date.getDate(),date.getMonth(),date.getFullYear()].join();
 
-        console.log(taskDate);
+        console.log(arr);
+
 
     })
 
