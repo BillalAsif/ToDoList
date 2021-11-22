@@ -368,14 +368,13 @@ function sortTaskByDate() {
 
     const taskArr = JSON.parse(localStorage.getItem('Task'));
 
-    const newTaskArr = taskArr.map(sort);
+    taskArr.forEach((element) => {
+        
+        
+        const taskDate = element.date;
 
-    function sort(task) {
+        console.log(taskDate);
 
-        return task.date;
-
-    }
-
-    console.log(newTaskArr);
+    })
 
 }
