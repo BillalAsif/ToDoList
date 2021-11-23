@@ -233,7 +233,7 @@
 
 .dateText {
     position: absolute;
-    right: 50px;
+    right: 80px;
     font-style: normal;
     font-size: small;
     margin-top: 3px;
@@ -241,8 +241,16 @@
 
 .del {
     margin-top: 5px;
-    float: right;
+    position: absolute;
+    right: 50px;
     color: red;
+    cursor: pointer;
+}
+
+.complete {
+    margin-top: 5px;
+    float: right;
+    color: green;
     cursor: pointer;
 }
 

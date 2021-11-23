@@ -341,6 +341,25 @@ function deleteTask(event) {
 
 }
 
+
+function completeTask(event) {
+
+    const statusEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+    const dateEl = event.target.previousElementSibling.previousElementSibling.innerHTML;
+    const titleEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+    const repeatEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+    const arr = { title: titleEl, date: dateEl, repeat: repeatEl, status: statusEl };
+    const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const index = taskArr.indexOf(arr);
+
+    console.log(arr)
+    /*     taskArr.splice(index, 3, "complete");
+        localStorage.setItem('Task', JSON.stringify(taskArr));
+        displayTasks(); */
+
+}//Sort this out
+
+
 function displayTasks() {
 
     const taskArr = JSON.parse(localStorage.getItem('Task'));
@@ -356,6 +375,7 @@ function displayTasks() {
             <i class='taskText'>${taskArr[i].title}</i>
             <i class='dateText'>${taskArr[i].date}</i>
             <i class='fas fa-times del' onclick="deleteTask(event)"></i>
+            <i class='fas fa-check complete' onclick="completeTask(event)"></i>
              `;
         div.innerHTML = taskText;
         result.appendChild(div);
@@ -369,11 +389,11 @@ function sortTaskByDate() {
     const taskArr = JSON.parse(localStorage.getItem('Task'));
 
     taskArr.forEach((element) => {
-        
-        
+
+
         const taskDate = element.date;
         const date = new Date(taskDate);
-        const arr = [date.getDate(),date.getMonth(),date.getFullYear()].join();
+        const arr = [date.getDate(), date.getMonth(), date.getFullYear()].join();
 
         console.log(arr);
 
