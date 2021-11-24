@@ -344,18 +344,25 @@ function deleteTask(event) {
 
 function completeTask(event) {
 
-    const statusEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
-    const dateEl = event.target.previousElementSibling.previousElementSibling.innerHTML;
-    const titleEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
-    const repeatEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
-    const arr = { title: titleEl, date: dateEl, repeat: repeatEl, status: statusEl };
-    const taskArr = JSON.parse(localStorage.getItem('Task'));
-    const index = taskArr.indexOf(arr);
+    /*     const statusEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+        const dateEl = event.target.previousElementSibling.previousElementSibling.innerHTML;
+        const titleEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+        const repeatEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+        const arr = { title: titleEl, date: dateEl, repeat: repeatEl, status: statusEl }; */
 
-    console.log(arr)
-    /*     taskArr.splice(index, 3, "complete");
-        localStorage.setItem('Task', JSON.stringify(taskArr));
-        displayTasks(); */
+    const sisElement = event.target.previousElementSibling.previousElementSibling.innerHTML;
+    const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const index = taskArr.indexOf(sisElement);
+    taskArr.splice(index, 1);
+    localStorage.setItem('Task', JSON.stringify(taskArr));
+    event.target.parentElement.remove();
+
+    /* const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const index = taskArr.indexOf(arr);
+    console.log(index)
+    taskArr.splice(index, 3, "complete");
+    localStorage.setItem('Task', JSON.stringify(taskArr));
+    displayTasks(); */
 
 }//Sort this out
 
