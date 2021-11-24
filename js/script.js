@@ -344,18 +344,21 @@ function deleteTask(event) {
 
 function completeTask(event) {
 
-    const statusEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+    const del = event.target.previousElementSibling;
+    const statusEl = "complete";
     const dateEl = event.target.previousElementSibling.previousElementSibling.innerHTML;
     const titleEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
     const repeatEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+    del.click();
+
     const arr = { title: titleEl, date: dateEl, repeat: repeatEl, status: statusEl };
-
     const taskArr = JSON.parse(localStorage.getItem('Task'));
-
-
+    const newTask = arr;
+    taskArr.push(newTask);
+    localStorage.setItem('Task', JSON.stringify(taskArr));
     displayTasks();
 
-}//Sort this out
+}
 
 
 function displayTasks() {
