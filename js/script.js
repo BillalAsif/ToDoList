@@ -291,9 +291,11 @@ let key = localStorage.length;
 if (key === 0) {
     const newTask = [];
     localStorage.setItem('Task', JSON.stringify(newTask));
+    localStorage.setItem('CompleteTask', JSON.stringify(newTask));
 }
 
 displayTasks();
+displayCompleteTasks();
 
 //Classes
 class Task {
@@ -330,13 +332,13 @@ function addTask() {
 
 }
 
-function deleteTask(event) {
+function deleteTask(event, taskType) {
 
     const sisElement = event.target.previousElementSibling.previousElementSibling.innerHTML;
-    const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const taskArr = JSON.parse(localStorage.getItem(taskType));
     const index = taskArr.indexOf(sisElement);
     taskArr.splice(index, 1);
-    localStorage.setItem('Task', JSON.stringify(taskArr));
+    localStorage.setItem(taskType, JSON.stringify(taskArr));
     event.target.parentElement.remove();
 
 }
@@ -349,14 +351,16 @@ function completeTask(event) {
     const dateEl = event.target.previousElementSibling.previousElementSibling.innerHTML;
     const titleEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
     const repeatEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
-    del.click();
+
 
     const arr = { title: titleEl, date: dateEl, repeat: repeatEl, status: statusEl };
-    const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const taskArr = JSON.parse(localStorage.getItem('CompleteTask'));
     const newTask = arr;
     taskArr.push(newTask);
-    localStorage.setItem('Task', JSON.stringify(taskArr));
-    displayTasks();
+    localStorage.setItem('CompleteTask', JSON.stringify(taskArr));
+    del.click();
+    displayCompleteTasks();
+
 
 }
 
@@ -375,11 +379,35 @@ function displayTasks() {
             <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
             <i class='taskText'>${taskArr[i].title}</i>
             <i class='dateText'>${taskArr[i].date}</i>
-            <i class='fas fa-times del' onclick="deleteTask(event)"></i>
+            <i class='fas fa-times del' onclick="deleteTask(event, 'Task')"></i>
             <i class='fas fa-check complete' onclick="completeTask(event)"></i>
              `;
         div.innerHTML = taskText;
         result.appendChild(div);
+
+    }
+
+}
+
+function displayCompleteTasks() {
+
+    const taskArr = JSON.parse(localStorage.getItem('CompleteTask'));
+    const completeTask = document.getElementById("completeTask");
+    completeTask.innerHTML = "";
+
+    for (let i = 0; i < taskArr.length; i++) {
+        const div = document.createElement("div");
+        div.classList.add("completeTasks");
+        const taskText = `
+            <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
+            <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
+            <i class='taskText'>${taskArr[i].title}</i>
+            <i class='dateText'>${taskArr[i].date}</i>
+            <i class='fas fa-times del' onclick="deleteTask(event, 'CompleteTask')"></i>
+            <i class='fas fa-check complete' onclick="completeTask(event)"></i>
+             `;
+        div.innerHTML = taskText;
+        completeTask.appendChild(div);
 
     }
 
