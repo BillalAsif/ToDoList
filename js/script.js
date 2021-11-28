@@ -290,12 +290,16 @@ let key = localStorage.length;
 
 if (key === 0) {
     const newTask = [];
-    localStorage.setItem('Task', JSON.stringify(newTask));
+    localStorage.setItem('NewTask', JSON.stringify(newTask));
     localStorage.setItem('CompleteTask', JSON.stringify(newTask));
+    localStorage.setItem('LateTask', JSON.stringify(newTask));
+    localStorage.setItem('OngoingTask', JSON.stringify(newTask));
 }
 
-displayTasks();
-displayCompleteTasks();
+displayTasks("NewTask");
+displayTasks("OngoingTask");
+displayTasks("LateTask");
+displayTasks("CompleteTask");
 
 //Classes
 class Task {
@@ -322,13 +326,38 @@ saveTaskButton.addEventListener('click', () => {
 });
 
 //Functions
+
+function displayTasks(task) {
+
+    const taskArr = JSON.parse(localStorage.getItem(task));
+    const result = document.getElementById(task);
+    result.innerHTML = "";
+
+    for (let i = 0; i < taskArr.length; i++) {
+        const div = document.createElement("div");
+        div.classList.add(task);
+        const taskText = `
+            <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
+            <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
+            <i class='taskText'>${taskArr[i].title}</i>
+            <i class='dateText'>${taskArr[i].date}</i>
+            <i class='fas fa-times del' onclick="deleteTask(event, '${task}'')"></i>
+            <i class='fas fa-check complete' onclick="completeTask(event)"></i>
+             `;
+        div.innerHTML = taskText;
+        result.appendChild(div);
+
+    }
+
+}
+
 function addTask() {
 
-    const taskArr = JSON.parse(localStorage.getItem('Task'));
+    const taskArr = JSON.parse(localStorage.getItem('NewTask'));
     const newTask = new Task;
     taskArr.push(newTask);
-    localStorage.setItem('Task', JSON.stringify(taskArr));
-    displayTasks();
+    localStorage.setItem('NewTask', JSON.stringify(taskArr));
+    displayTasks("NewTask");
 
 }
 
@@ -359,45 +388,33 @@ function completeTask(event) {
     taskArr.push(newTask);
     localStorage.setItem('CompleteTask', JSON.stringify(taskArr));
     del.click();
-    displayCompleteTasks();
+    displayTasks("CompleteTask");
 
 
 }
 
+function ongoingTasks() {
 
-function displayTasks() {
-
-    const taskArr = JSON.parse(localStorage.getItem('Task'));
-    const result = document.getElementById("result");
-    result.innerHTML = "";
-
-    for (let i = 0; i < taskArr.length; i++) {
-        const div = document.createElement("div");
-        div.classList.add("result");
-        const taskText = `
-            <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
-            <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
-            <i class='taskText'>${taskArr[i].title}</i>
-            <i class='dateText'>${taskArr[i].date}</i>
-            <i class='fas fa-times del' onclick="deleteTask(event, 'Task')"></i>
-            <i class='fas fa-check complete' onclick="completeTask(event)"></i>
-             `;
-        div.innerHTML = taskText;
-        result.appendChild(div);
+    const ongoingTask = JSON.parse(localStorage.getItem('OngoingTask'));
+    const newTask = JSON.parse(localStorage.getItem('NewTask'));
+    
+    for(let i = 0;i < newTask.length; i++) {
+        
+        console.log(newTask.date);
 
     }
 
 }
 
-function displayCompleteTasks() {
+function lateTasks() {
 
-    const taskArr = JSON.parse(localStorage.getItem('CompleteTask'));
-    const completeTask = document.getElementById("completeTask");
-    completeTask.innerHTML = "";
+    const taskArr = JSON.parse(localStorage.getItem('LateTask'));
+    const lateTask = document.getElementById("lateTask");
+    lateTask.innerHTML = "";
 
     for (let i = 0; i < taskArr.length; i++) {
         const div = document.createElement("div");
-        div.classList.add("completeTasks");
+        div.classList.add("lateTasks");
         const taskText = `
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
             <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
@@ -407,7 +424,7 @@ function displayCompleteTasks() {
             <i class='fas fa-check complete' onclick="completeTask(event)"></i>
              `;
         div.innerHTML = taskText;
-        completeTask.appendChild(div);
+        lateTask.appendChild(div);
 
     }
 
@@ -430,3 +447,18 @@ function sortTaskByDate() {
     })
 
 }
+
+// BAGDE CODE 
+
+//variables
+let newTaskBadge = document.getElementById("newTaskBadge");
+let ongoingTaskBadge = document.getElementById("ongoingTaskBadge");
+let lateTaskBadge = document.getElementById("lateTaskBadge");
+let completeTaskBadge = document.getElementById("completeTaskBadge");
+let allTaskBadge = document.getElementById("allTaskBadge");
+
+newTaskBadge.innerText = 2;
+ongoingTaskBadge.innerText = 3;
+lateTaskBadge.innerText = 4;
+completeTaskBadge.innerText = 2;
+allTaskBadge.innerText = parseInt(newTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(lateTaskBadge.textContent) + parseInt(completeTaskBadge.textContent);
