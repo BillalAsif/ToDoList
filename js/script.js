@@ -400,7 +400,12 @@ function ongoingTasks() {
 
     for (let i = 0; i < newTask.length; i++) {
 
-        console.log(newTask.date);
+        const taskDate = newTask[i].date;
+        const date = new Date();
+
+        if (date > taskDate) {
+            console.log(taskDate);
+        }
 
     }
 
