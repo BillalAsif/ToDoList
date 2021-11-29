@@ -341,7 +341,7 @@ function displayTasks(task) {
             <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
             <i class='taskText'>${taskArr[i].title}</i>
             <i class='dateText'>${taskArr[i].date}</i>
-            <i class='fas fa-times del' onclick="deleteTask(event, '${task}'')"></i>
+            <i class='fas fa-times del' onclick="deleteTask(event, '${task}')"></i>
             <i class='fas fa-check complete' onclick="completeTask(event)"></i>
              `;
         div.innerHTML = taskText;
@@ -397,9 +397,9 @@ function ongoingTasks() {
 
     const ongoingTask = JSON.parse(localStorage.getItem('OngoingTask'));
     const newTask = JSON.parse(localStorage.getItem('NewTask'));
-    
-    for(let i = 0;i < newTask.length; i++) {
-        
+
+    for (let i = 0; i < newTask.length; i++) {
+
         console.log(newTask.date);
 
     }
