@@ -421,13 +421,23 @@ function ongoingTasks() {
     for (let i = 0; i < newTask.length; i++) {
 
         const taskDate = newTask[i].date;
+        const dateConversion = new Date(taskDate);
         const date = new Date();
 
-        if (date > taskDate) {
-            console.log(taskDate);
+        if (date > dateConversion) {
+            const title = newTask[i].title;
+            const date = newTask[i].date;
+            const repeat = newTask[i].repeat;
+            const status = "current";
+            const arr = { title, date, repeat, status };
+
+            ongoingTask.push(arr);
+            localStorage.setItem('OngoingTask', JSON.stringify(ongoingTask));
         }
 
     }
+
+    displayTasks("OngoingTask");
 
 }
 
