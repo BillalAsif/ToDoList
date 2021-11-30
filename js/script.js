@@ -334,9 +334,27 @@ function displayTasks(task) {
     result.innerHTML = "";
 
     for (let i = 0; i < taskArr.length; i++) {
-        const div = document.createElement("div");
-        div.classList.add(task);
-        const taskText = `
+
+
+        if (task === "CompleteTask") {
+            const div = document.createElement("div");
+            div.classList.add(task);
+            const taskText = `
+            <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
+            <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
+            <i class='taskText'>${taskArr[i].title}</i>
+            <i class='dateText'>${taskArr[i].date}</i>
+            <i class='fas fa-times del delCom' onclick="deleteTask(event, '${task}')"></i>
+             `;
+            div.innerHTML = taskText;
+            result.appendChild(div);
+
+        }
+
+        if (task === "NewTask" || task === "OngoingTask" || task === "LateTask") {
+            const div = document.createElement("div");
+            div.classList.add(task);
+            const taskText = `
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
             <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
             <i class='taskText'>${taskArr[i].title}</i>
@@ -344,8 +362,10 @@ function displayTasks(task) {
             <i class='fas fa-times del' onclick="deleteTask(event, '${task}')"></i>
             <i class='fas fa-check complete' onclick="completeTask(event)"></i>
              `;
-        div.innerHTML = taskText;
-        result.appendChild(div);
+            div.innerHTML = taskText;
+            result.appendChild(div);
+
+        }
 
     }
 
