@@ -289,17 +289,21 @@ let taskStatus = "new";
 let key = localStorage.length;
 
 if (key === 0) {
-    const newTask = [];
-    localStorage.setItem('NewTask', JSON.stringify(newTask));
-    localStorage.setItem('CompleteTask', JSON.stringify(newTask));
-    localStorage.setItem('LateTask', JSON.stringify(newTask));
-    localStorage.setItem('OngoingTask', JSON.stringify(newTask));
+    const TodayTask = [];
+    localStorage.setItem('TodayTask', JSON.stringify(TodayTask));
+    localStorage.setItem('TommorrowTask', JSON.stringify(TodayTask));
+    localStorage.setItem('OngoingTask', JSON.stringify(TodayTask));
+    localStorage.setItem('IncompleteTask', JSON.stringify(TodayTask));
+    localStorage.setItem('CompleteTask', JSON.stringify(TodayTask));
+
 }
 
-displayTasks("NewTask");
+displayTasks("TodayTask");
+displayTasks("TommorrowTask");
 displayTasks("OngoingTask");
-displayTasks("LateTask");
 displayTasks("CompleteTask");
+displayTasks("IncompleteTask");
+
 
 if (key > 0) {
     ongoingTasks();
@@ -355,7 +359,7 @@ function displayTasks(task) {
 
         }
 
-        if (task === "NewTask" || task === "OngoingTask" || task === "LateTask") {
+        if (task === "TodayTask" || task === "OngoingTask" || task === "IncompleteTask" || task === "TommorrowTask") {
             const div = document.createElement("div");
             div.classList.add(task);
             const taskText = `
@@ -377,11 +381,11 @@ function displayTasks(task) {
 
 function addTask() {
 
-    const taskArr = JSON.parse(localStorage.getItem('NewTask'));
+    const taskArr = JSON.parse(localStorage.getItem('TodayTask'));
     const newTask = new Task;
     taskArr.push(newTask);
-    localStorage.setItem('NewTask', JSON.stringify(taskArr));
-    displayTasks("NewTask");
+    localStorage.setItem('TodayTask', JSON.stringify(taskArr));
+    displayTasks("TodayTask");
 
 }
 
@@ -422,43 +426,43 @@ function ongoingTasks() {
     const ongoingTaskButton = document.getElementById('OngoingTask');
     ongoingTaskButton.innerHTML = "";
     const ongoingTask = JSON.parse(localStorage.getItem('OngoingTask'));
-    const newTask = JSON.parse(localStorage.getItem('NewTask'));
+    const todayTask = JSON.parse(localStorage.getItem('TodayTask'));
 
-    for (let i = 0; i < newTask.length; i++) {
+    for (let i = 0; i < todayTask.length; i++) {
 
-        const taskDate = newTask[i].date;
+        const taskDate = todayTask[i].date;
         const dateConversion = new Date(taskDate);
         const date = new Date();
 
         if (date > dateConversion) {
-            const title = newTask[i].title;
-            const date = newTask[i].date;
-            const repeat = newTask[i].repeat;
-            const status = "current";
+            const title = todayTask[i].title;
+            const date = todayTask[i].date;
+            const repeat = todayTask[i].repeat;
+            const status = "ongoing";
             const arr = { title, date, repeat, status };
 
             ongoingTask.push(arr);
             localStorage.setItem('OngoingTask', JSON.stringify(ongoingTask));
-            const array = newTask;
+            const array = todayTask;
             array.splice(i,1);
-            localStorage.setItem('NewTask', JSON.stringify(array));
+            localStorage.setItem('TodayTask', JSON.stringify(array));
         }
 
     }
-    displayTasks("NewTask");
+    displayTasks("TodayTask");
     displayTasks("OngoingTask");
 
 }
 
-function lateTasks() {
+function IncompleteTasks() {
 
-    const taskArr = JSON.parse(localStorage.getItem('LateTask'));
-    const lateTask = document.getElementById("lateTask");
-    lateTask.innerHTML = "";
+    const taskArr = JSON.parse(localStorage.getItem('IncompleteTask'));
+    const IncompleteTask = document.getElementById("IncompleteTask");
+    IncompleteTask.innerHTML = "";
 
     for (let i = 0; i < taskArr.length; i++) {
         const div = document.createElement("div");
-        div.classList.add("lateTasks");
+        div.classList.add("IncompleteTasks");
         const taskText = `
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
             <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
@@ -468,29 +472,12 @@ function lateTasks() {
             <i class='fas fa-check complete' onclick="completeTask(event)"></i>
              `;
         div.innerHTML = taskText;
-        lateTask.appendChild(div);
+        IncompleteTask.appendChild(div);
 
     }
 
 }
 
-function sortTaskByDate() {
-
-    const taskArr = JSON.parse(localStorage.getItem('Task'));
-
-    taskArr.forEach((element) => {
-
-
-        const taskDate = element.date;
-        const date = new Date(taskDate);
-        const arr = [date.getDate(), date.getMonth(), date.getFullYear()].join();
-
-        console.log(arr);
-
-
-    })
-
-}
 
 // BAGDE CODE 
 
