@@ -495,14 +495,16 @@ function sortTaskByDate() {
 // BAGDE CODE 
 
 //variables
-let newTaskBadge = document.getElementById("newTaskBadge");
+let todayTaskBadge = document.getElementById("todayTaskBadge");
 let ongoingTaskBadge = document.getElementById("ongoingTaskBadge");
-let lateTaskBadge = document.getElementById("lateTaskBadge");
+let incompleteTaskBadge = document.getElementById("incompleteTaskBadge");
 let completeTaskBadge = document.getElementById("completeTaskBadge");
+let tommorrowTaskBadge = document.getElementById("tommorrowTaskBadge");
 let allTaskBadge = document.getElementById("allTaskBadge");
 
-newTaskBadge.innerText = 2;
+todayTaskBadge.innerText = 2;
+tommorrowTaskBadge.innerText = 3
 ongoingTaskBadge.innerText = 3;
-lateTaskBadge.innerText = 4;
+incompleteTaskBadge.innerText = 4;
 completeTaskBadge.innerText = 2;
-allTaskBadge.innerText = parseInt(newTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(lateTaskBadge.textContent) + parseInt(completeTaskBadge.textContent);
+allTaskBadge.innerText = parseInt(todayTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent) + parseInt(tommorrowTaskBadge.textContent);
