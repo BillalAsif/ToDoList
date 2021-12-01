@@ -301,6 +301,10 @@ displayTasks("OngoingTask");
 displayTasks("LateTask");
 displayTasks("CompleteTask");
 
+if (key > 0) {
+    ongoingTasks();
+}
+
 //Classes
 class Task {
 
@@ -415,6 +419,8 @@ function completeTask(event) {
 
 function ongoingTasks() {
 
+    const ongoingTaskButton = document.getElementById('OngoingTask');
+    ongoingTaskButton.innerHTML = "";
     const ongoingTask = JSON.parse(localStorage.getItem('OngoingTask'));
     const newTask = JSON.parse(localStorage.getItem('NewTask'));
 
@@ -433,10 +439,13 @@ function ongoingTasks() {
 
             ongoingTask.push(arr);
             localStorage.setItem('OngoingTask', JSON.stringify(ongoingTask));
+            const array = newTask;
+            array.splice(i,1);
+            localStorage.setItem('NewTask', JSON.stringify(array));
         }
 
     }
-
+    displayTasks("NewTask");
     displayTasks("OngoingTask");
 
 }
