@@ -147,12 +147,16 @@ yearRight.addEventListener('click', () => {
 
 yearLeft.addEventListener('click', () => {
 
-    const date = new Date();
-    date.setFullYear(year - 1);
-    const prevYear = date.getFullYear();
-    yearText.textContent = prevYear;
-    year = prevYear;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    if (year == year) {
+        year = year;
+    } else {
+        const date = new Date();
+        date.setFullYear(year - 1);
+        const prevYear = date.getFullYear();
+        yearText.textContent = prevYear;
+        year = prevYear;
+        calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    }
 
 })
 
@@ -326,10 +330,24 @@ class Task {
 //Button events
 saveTaskButton.addEventListener('click', () => {
 
-    addTask();
-    document.getElementById("newTask").value = "";
-    calenderUI.classList.remove('hide');
-    calenderUI.classList.add('hide');
+    const date = new Date();
+    const month = date.getMonth;
+    const day = date.getDay;
+    const calDate = new Date(calenderDate);
+
+
+    if (calDate.getDay() < day && calDate.getMonth < month) {
+
+        alert("Can't set a date for a task in the past.");//Fix this
+
+    } else {
+
+        addTask();
+        document.getElementById("newTask").value = "";
+        calenderUI.classList.remove('hide');
+        calenderUI.classList.add('hide');
+
+    }
 
 });
 
@@ -444,7 +462,7 @@ function ongoingTasks() {
             ongoingTask.push(arr);
             localStorage.setItem('OngoingTask', JSON.stringify(ongoingTask));
             const array = todayTask;
-            array.splice(i,1);
+            array.splice(i, 1);
             localStorage.setItem('TodayTask', JSON.stringify(array));
         }
 
