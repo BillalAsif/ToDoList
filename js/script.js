@@ -327,25 +327,36 @@ class Task {
 
 }
 
+function test() {
+
+    const date = new Date();
+    const month = date.getMonth();
+    const day = date.getDay();
+    const calDate = new Date(calenderDate);
+    console.log(calDate.getDay(), calDate.getMonth(), day, month);
+
+}
+
 //Button events
 saveTaskButton.addEventListener('click', () => {
 
     const date = new Date();
-    const month = date.getMonth;
-    const day = date.getDay;
+    const month = date.getMonth();
+    const day = date.getDay();
+    const year = date.getFullYear();
     const calDate = new Date(calenderDate);
 
-
-    if (calDate.getDay() < day && calDate.getMonth < month) {
-
-        alert("Can't set a date for a task in the past.");//Fix this
-
-    } else {
-
+    if (calDate.getDay() >= day && calDate.getMonth() >= month && calDate.getFullYear() >= year) {
+      
         addTask();
         document.getElementById("newTask").value = "";
         calenderUI.classList.remove('hide');
         calenderUI.classList.add('hide');
+
+
+    } else {
+
+        alert("Can't set a date for a task in the past.");//Fix this
 
     }
 
