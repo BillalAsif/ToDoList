@@ -337,30 +337,20 @@ function test() {
 
 }
 
-//Button events  ----------FIX THIS
+//Button events 
 saveTaskButton.addEventListener('click', () => {
 
     const date = new Date();
-    const month = date.getMonth();
-    const day = date.getDay();
-    const year = date.getFullYear();
     const calDate = new Date(calenderDate);
+    console.log(date);
+    console.log(calDate);
 
-    if (calDate.getDay() >= day) {
-
-
-        if (calDate.getMonth() >= month) {
-
-
-            if (calDate.getFullYear() >= year) {
+    if (date < calDate) {
 
                 addTask();
                 document.getElementById("newTask").value = "";
                 calenderUI.classList.remove('hide');
                 calenderUI.classList.add('hide');
-
-            }
-        }
 
     } else {
 
@@ -368,7 +358,7 @@ saveTaskButton.addEventListener('click', () => {
 
     }
 
-});//check this 
+});
 
 //Functions
 
