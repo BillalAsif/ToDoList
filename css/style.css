@@ -214,7 +214,7 @@
     color: green;
 }
 
-.TodayTask {
+.todayTask {
     color:black;
     background-color:darkmagenta;
     border: black 1px solid;
@@ -254,12 +254,12 @@
     cursor: pointer;
 }
 
-.TodayTask > i {
+.todayTask > i {
     font-style: normal;
     padding-bottom: 6px;
 }
 
-.TommorrowTask {
+.tomorrowTask {
     color:black;
     background-color:darkturquoise;
     border: black 1px solid;
@@ -269,7 +269,7 @@
     position: relative;
 }
 
-.CompleteTask {
+.completeTask {
         color:black;
         background-color:darkgray;
         border: black 1px solid;
@@ -279,7 +279,7 @@
         position: relative;
 }
 
-.IncompleteTask {
+.incompleteTask {
     color:black;
     background-color:darkred;
     border: black 1px solid;
@@ -289,7 +289,7 @@
     position: relative;
 }
 
-.OngoingTask {
+.ongoingTask {
     color:black;
     background-color:darkslateblue;
     border: black 1px solid;

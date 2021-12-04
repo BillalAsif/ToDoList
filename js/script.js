@@ -294,19 +294,19 @@ let key = localStorage.length;
 
 if (key === 0) {
     const TodayTask = [];
-    localStorage.setItem('TodayTask', JSON.stringify(TodayTask));
-    localStorage.setItem('TommorrowTask', JSON.stringify(TodayTask));
-    localStorage.setItem('OngoingTask', JSON.stringify(TodayTask));
-    localStorage.setItem('IncompleteTask', JSON.stringify(TodayTask));
-    localStorage.setItem('CompleteTask', JSON.stringify(TodayTask));
+    localStorage.setItem('todayTask', JSON.stringify(TodayTask));
+    localStorage.setItem('tomorrowTask', JSON.stringify(TodayTask));
+    localStorage.setItem('ongoingTask', JSON.stringify(TodayTask));
+    localStorage.setItem('incompleteTask', JSON.stringify(TodayTask));
+    localStorage.setItem('completeTask', JSON.stringify(TodayTask));
 
 }
 
-displayTasks("TodayTask");
-displayTasks("TommorrowTask");
-displayTasks("OngoingTask");
-displayTasks("CompleteTask");
-displayTasks("IncompleteTask");
+displayTasks("todayTask");
+displayTasks("tomorrowTask");
+displayTasks("ongoingTask");
+displayTasks("completeTask");
+displayTasks("incompleteTask");
 
 
 if (key > 0) {
@@ -347,7 +347,7 @@ saveTaskButton.addEventListener('click', () => {
     const calDate = new Date(calenderDate);
 
     if (calDate.getDay() >= day && calDate.getMonth() >= month && calDate.getFullYear() >= year) {
-      
+
         addTask();
         document.getElementById("newTask").value = "";
         calenderUI.classList.remove('hide');
@@ -360,7 +360,7 @@ saveTaskButton.addEventListener('click', () => {
 
     }
 
-});
+});//check this 
 
 //Functions
 
@@ -373,7 +373,7 @@ function displayTasks(task) {
     for (let i = 0; i < taskArr.length; i++) {
 
 
-        if (task === "CompleteTask") {
+        if (task === "completeTask") {
             const div = document.createElement("div");
             div.classList.add(task);
             const taskText = `
@@ -388,7 +388,7 @@ function displayTasks(task) {
 
         }
 
-        if (task === "TodayTask" || task === "OngoingTask" || task === "IncompleteTask" || task === "TommorrowTask") {
+        if (task === "todayTask" || task === "ongoingTask" || task === "incompleteTask" || task === "tomorrowTask") {
             const div = document.createElement("div");
             div.classList.add(task);
             const taskText = `
@@ -410,11 +410,11 @@ function displayTasks(task) {
 
 function addTask() {
 
-    const taskArr = JSON.parse(localStorage.getItem('TodayTask'));
+    const taskArr = JSON.parse(localStorage.getItem('todayTask'));
     const newTask = new Task;
     taskArr.push(newTask);
-    localStorage.setItem('TodayTask', JSON.stringify(taskArr));
-    displayTasks("TodayTask");
+    localStorage.setItem('todayTask', JSON.stringify(taskArr));
+    displayTasks("todayTask");
 
 }
 
@@ -440,22 +440,22 @@ function completeTask(event) {
 
 
     const arr = { title: titleEl, date: dateEl, repeat: repeatEl, status: statusEl };
-    const taskArr = JSON.parse(localStorage.getItem('CompleteTask'));
+    const taskArr = JSON.parse(localStorage.getItem('completeTask'));
     const newTask = arr;
     taskArr.push(newTask);
-    localStorage.setItem('CompleteTask', JSON.stringify(taskArr));
+    localStorage.setItem('completeTask', JSON.stringify(taskArr));
     del.click();
-    displayTasks("CompleteTask");
+    displayTasks("completeTask");
 
 
 }
 
 function ongoingTasks() {
 
-    const ongoingTaskButton = document.getElementById('OngoingTask');
+    const ongoingTaskButton = document.getElementById('ongoingTask');
     ongoingTaskButton.innerHTML = "";
-    const ongoingTask = JSON.parse(localStorage.getItem('OngoingTask'));
-    const todayTask = JSON.parse(localStorage.getItem('TodayTask'));
+    const ongoingTask = JSON.parse(localStorage.getItem('ongoingTask'));
+    const todayTask = JSON.parse(localStorage.getItem('todayTask'));
 
     for (let i = 0; i < todayTask.length; i++) {
 
@@ -471,33 +471,33 @@ function ongoingTasks() {
             const arr = { title, date, repeat, status };
 
             ongoingTask.push(arr);
-            localStorage.setItem('OngoingTask', JSON.stringify(ongoingTask));
+            localStorage.setItem('ongoingTask', JSON.stringify(ongoingTask));
             const array = todayTask;
             array.splice(i, 1);
-            localStorage.setItem('TodayTask', JSON.stringify(array));
+            localStorage.setItem('todayTask', JSON.stringify(array));
         }
 
     }
-    displayTasks("TodayTask");
-    displayTasks("OngoingTask");
+    displayTasks("todayTask");
+    displayTasks("ongoingTask");
 
 }
 
 function IncompleteTasks() {
 
-    const taskArr = JSON.parse(localStorage.getItem('IncompleteTask'));
-    const IncompleteTask = document.getElementById("IncompleteTask");
+    const taskArr = JSON.parse(localStorage.getItem('incompleteTask'));
+    const IncompleteTask = document.getElementById("incompleteTask");
     IncompleteTask.innerHTML = "";
 
     for (let i = 0; i < taskArr.length; i++) {
         const div = document.createElement("div");
-        div.classList.add("IncompleteTasks");
+        div.classList.add("incompleteTasks");
         const taskText = `
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
             <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
             <i class='taskText'>${taskArr[i].title}</i>
             <i class='dateText'>${taskArr[i].date}</i>
-            <i class='fas fa-times del' onclick="deleteTask(event, 'CompleteTask')"></i>
+            <i class='fas fa-times del' onclick="deleteTask(event, 'completeTask')"></i>
             <i class='fas fa-check complete' onclick="completeTask(event)"></i>
              `;
         div.innerHTML = taskText;
@@ -515,12 +515,12 @@ let todayTaskBadge = document.getElementById("todayTaskBadge");
 let ongoingTaskBadge = document.getElementById("ongoingTaskBadge");
 let incompleteTaskBadge = document.getElementById("incompleteTaskBadge");
 let completeTaskBadge = document.getElementById("completeTaskBadge");
-let tommorrowTaskBadge = document.getElementById("tommorrowTaskBadge");
+let tomorrowTaskBadge = document.getElementById("tomorrowTaskBadge");
 let allTaskBadge = document.getElementById("allTaskBadge");
 
 todayTaskBadge.innerText = 2;
-tommorrowTaskBadge.innerText = 3
+tomorrowTaskBadge.innerText = 3
 ongoingTaskBadge.innerText = 3;
 incompleteTaskBadge.innerText = 4;
 completeTaskBadge.innerText = 2;
-allTaskBadge.innerText = parseInt(todayTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent) + parseInt(tommorrowTaskBadge.textContent);
+allTaskBadge.innerText = parseInt(todayTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent) + parseInt(tomorrowTaskBadge.textContent);
