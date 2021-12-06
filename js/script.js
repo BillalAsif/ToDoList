@@ -332,8 +332,6 @@ saveTaskButton.addEventListener('click', () => {
 
     const date = new Date();
     const calDate = new Date(calenderDate);
-    console.log(date);
-    console.log(calDate);
 
     if (date < calDate) {
 
@@ -451,7 +449,7 @@ function ongoingTasks() {
 
     for (let i = 0; i < todayTask.length; i++) {
 
-        const taskDate = todayTask[i].date;
+        const taskDate = todayTask[i].date; // ------- include time
         const dateConversion = new Date(taskDate);
         const date = new Date();
 
