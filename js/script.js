@@ -128,7 +128,7 @@ yearText.textContent = year;
 monthText.textContent = months[month];
 dayText.textContent = day;
 timeText.textContent = hours + ':' + mins;
-let calenderDate = new Date().toDateString();
+let calenderDate = new Date();
 
 //Calender Button triggers
 calenderButton.addEventListener('click', () => {
@@ -142,7 +142,7 @@ yearRight.addEventListener('click', () => {
     const nextYear = date.getFullYear();
     yearText.textContent = nextYear;
     year = nextYear;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    calenderDate = new Date(year, month, day, hours, mins);
 })
 
 yearLeft.addEventListener('click', () => {
@@ -155,7 +155,7 @@ yearLeft.addEventListener('click', () => {
         const prevYear = date.getFullYear();
         yearText.textContent = prevYear;
         year = prevYear;
-        calenderDate = new Date(year, month, day, hours, mins).toDateString();
+        calenderDate = new Date(year, month, day, hours, mins);
     }
 
 })
@@ -171,7 +171,7 @@ monthRight.addEventListener('click', () => {
     const prevDay = date.getDate();
     dayText.textContent = prevDay;
     day = prevDay;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -186,7 +186,7 @@ monthLeft.addEventListener('click', () => {
     const prevDay = date.getDate();
     dayText.textContent = prevDay;
     day = prevDay;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -200,7 +200,7 @@ daysLeft.addEventListener('click', () => {
         const prevDay = date.getDate();
         dayText.textContent = prevDay;
         day = prevDay;
-        calenderDate = new Date(year, month, day, hours, mins).toDateString();
+        calenderDate = new Date(year, month, day, hours, mins);
     }
 
 })
@@ -212,7 +212,7 @@ daysRight.addEventListener('click', () => {
     const nextDay = date.getDate();
     dayText.textContent = nextDay;
     day = nextDay;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -223,7 +223,7 @@ hourLeft.addEventListener('click', () => {
     const prevHour = date.getHours();
     timeText.textContent = prevHour + ':' + mins;;
     hours = prevHour;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -234,7 +234,7 @@ hourRight.addEventListener('click', () => {
     const nextHour = date.getHours();
     timeText.textContent = nextHour + ':' + mins;;
     hours = nextHour;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -245,7 +245,7 @@ minLeft.addEventListener('click', () => {
     const prevMin = date.getMinutes();
     timeText.textContent = hours + ':' + prevMin;;
     mins = prevMin;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -256,7 +256,7 @@ minRight.addEventListener('click', () => {
     const nextMin = date.getMinutes();
     timeText.textContent = hours + ':' + nextMin;;
     mins = nextMin;
-    calenderDate = new Date(year, month, day, hours, mins).toDateString();
+    calenderDate = new Date(year, month, day, hours, mins);
 
 })
 
@@ -368,7 +368,6 @@ function displayTasks(task) {
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
             <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
             <i class='taskText'>${taskArr[i].title}</i>
-            <i class='dateText'>${taskArr[i].date}</i>
             <i class='fas fa-times del delCom' onclick="deleteTask(event, '${task}')"></i>
              `;
             div.innerHTML = taskText;
@@ -377,13 +376,18 @@ function displayTasks(task) {
         }
 
         if (task === "todayTask" || task === "ongoingTask" || task === "incompleteTask" || task === "tomorrowTask") {
+            const fullDate = new Date(taskArr[i].date);
+            const date = fullDate.toDateString();
+            const hour = fullDate.getHours();
+            const min = fullDate.getMinutes();
+            const time = hour + ":" + min;
             const div = document.createElement("div");
             div.classList.add(task);
             const taskText = `
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
             <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
             <i class='taskText'>${taskArr[i].title}</i>
-            <i class='dateText'>${taskArr[i].date}</i>
+            <i class='dateText'>${date} - ${time}</i>
             <i class='fas fa-times del' onclick="deleteTask(event, '${task}')"></i>
             <i class='fas fa-check complete' onclick="completeTask(event)"></i>
              `;
