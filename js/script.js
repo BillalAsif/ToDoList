@@ -440,28 +440,33 @@ function completeTask(event) {
 
 }
 
-function ongoingTasks() {
+function incompleteTask() { //this should include ongoingtasks
 
-    const ongoingTaskButton = document.getElementById('ongoingTask');
-    ongoingTaskButton.innerHTML = "";
-    const ongoingTask = JSON.parse(localStorage.getItem('ongoingTask'));
+    const incompleteTaskButton = document.getElementById('incompleteTask');
+    incompleteTaskButton.innerHTML = "";
+    const incompleteTask = JSON.parse(localStorage.getItem('incompleteTask'));
     const todayTask = JSON.parse(localStorage.getItem('todayTask'));
 
     for (let i = 0; i < todayTask.length; i++) {
 
-        const taskDate = todayTask[i].date; // ------- include time
-        const dateConversion = new Date(taskDate);
-        const date = new Date();
+        Date.prototype.addSec = function(s){
+            this.setSeconds(this.getSeconds()+s);
+            return this;
+        }
 
-        if (date > dateConversion) {
+        const date = todayTask[i].date;
+        const taskDate = new Date(date);
+        const secLater = new Date(date).addSec(1);
+        
+        if (taskDate > secLater) {
             const title = todayTask[i].title;
             const date = todayTask[i].date;
             const repeat = todayTask[i].repeat;
-            const status = "ongoing";
+            const status = "late";
             const arr = { title, date, repeat, status };
 
             ongoingTask.push(arr);
-            localStorage.setItem('ongoingTask', JSON.stringify(ongoingTask));
+            localStorage.setItem('incompleteTask', JSON.stringify(incompleteTask));
             const array = todayTask;
             array.splice(i, 1);
             localStorage.setItem('todayTask', JSON.stringify(array));
@@ -473,7 +478,7 @@ function ongoingTasks() {
 
 }
 
-function IncompleteTasks() {
+function ongoingTask() { //complete this
 
     const taskArr = JSON.parse(localStorage.getItem('incompleteTask'));
     const IncompleteTask = document.getElementById("incompleteTask");
