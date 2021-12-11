@@ -310,18 +310,20 @@ displayTasks("incompleteTask");
 
 
 if (key > 0) {
+    ongoingTask();
     incompleteTask();
 }
 
 //Classes
 class Task {
 
-    constructor(title, date, repeat, status) {
+    constructor(title, date, repeat, status, dateCreated) {
 
         this.title = document.getElementById("newTask").value;
         this.date = calenderDate;
         this.repeat = repeatStatus;
         this.status = taskStatus;
+        this.dateCreated = new Date();
 
     }
 
@@ -442,8 +444,8 @@ function completeTask(event) {
 
 function incompleteTask() {
 
-    const incompleteTaskButton = document.getElementById('incompleteTask');
-    incompleteTaskButton.innerHTML = "";
+    const incompleteTaskDiv = document.getElementById('incompleteTask');
+    incompleteTaskDiv.innerHTML = "";
     const incompleteTask = JSON.parse(localStorage.getItem('incompleteTask'));
     const todayTask = JSON.parse(localStorage.getItem('todayTask'));
     const ongoingTask = JSON.parse(localStorage.getItem('ongoingTask'));
@@ -458,15 +460,17 @@ function incompleteTask() {
             }
 
             const date = task[i].date;
-            const taskDate = new Date(date);
+            const now = new Date();
             const secLater = new Date(date).addSec(1);
+            
 
-            if (secLater > taskDate) {
+            if (now > secLater) {
                 const title = task[i].title;
                 const date = task[i].date;
                 const repeat = task[i].repeat;
                 const status = "incomplete";
-                const arr = { title, date, repeat, status };
+                const dateCreated = task[i].dateCreated;
+                const arr = { title, date, repeat, status, dateCreated };
 
                 incompleteTask.push(arr);
                 localStorage.setItem('incompleteTask', JSON.stringify(incompleteTask));
@@ -489,27 +493,52 @@ function incompleteTask() {
 
 }
 
-function ongoingTask() { //complete this
+function ongoingTask() { 
 
-    const taskArr = JSON.parse(localStorage.getItem('incompleteTask'));
-    const IncompleteTask = document.getElementById("incompleteTask");
-    IncompleteTask.innerHTML = "";
+    const ongoingTask = JSON.parse(localStorage.getItem('ongoingTask'));
+    const task = JSON.parse(localStorage.getItem('todayTask'));
+    const ongoingTaskDiv = document.getElementById("todayTask");
+    ongoingTaskDiv.innerHTML = "";
 
-    for (let i = 0; i < taskArr.length; i++) {
-        const div = document.createElement("div");
-        div.classList.add("incompleteTasks");
-        const taskText = `
-            <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
-            <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
-            <i class='taskText'>${taskArr[i].title}</i>
-            <i class='dateText'>${taskArr[i].date}</i>
-            <i class='fas fa-times del' onclick="deleteTask(event, 'completeTask')"></i>
-            <i class='fas fa-check complete' onclick="completeTask(event)"></i>
-             `;
-        div.innerHTML = taskText;
-        IncompleteTask.appendChild(div);
+    for (let i = 0; i < task.length; i++) {
+
+        const now = new Date();
+        const dateC = task[i].dateCreated.addSec(1);
+        console.log(now);
+        console.log(secLater);
+
+        Date.prototype.addSec = function (s) {
+            this.setSeconds(this.getSeconds() + s);
+            return this;
+        }
+
+        Date.prototype.addHours = function (h) {
+            this.setHours(this.getHours() + h);
+            return this;
+        }
+
+        if(now > secLater) {
+
+            const title = task[i].title;
+            const date = task[i].date;
+            const repeat = task[i].repeat;
+            const status = "ongoing";
+            const dateCreated = task[i].dateCreated;
+            const arr = { title, date, repeat, status, dateCreated };
+
+            ongoingTask.push(arr);
+            localStorage.setItem('ongoingTask', JSON.stringify(ongoingTask));
+            const array = task;
+            array.splice(i, 1);
+            localStorage.setItem('todayTask', JSON.stringify(array));
+
+        }
+
 
     }
+
+    displayTasks("todayTask");
+    displayTasks("ongoingTask");
 
 }
 
