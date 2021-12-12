@@ -462,7 +462,6 @@ function incompleteTask() {
             const date = task[i].date;
             const now = new Date();
             const secLater = new Date(date).addSec(1);
-            
 
             if (now > secLater) {
                 const title = task[i].title;
@@ -501,23 +500,16 @@ function ongoingTask() {
     ongoingTaskDiv.innerHTML = "";
 
     for (let i = 0; i < task.length; i++) {
-
-        const now = new Date();
-        const dateC = task[i].dateCreated.addSec(1);
-        console.log(now);
-        console.log(secLater);
-
-        Date.prototype.addSec = function (s) {
-            this.setSeconds(this.getSeconds() + s);
-            return this;
-        }
-
+        
         Date.prototype.addHours = function (h) {
             this.setHours(this.getHours() + h);
             return this;
         }
 
-        if(now > secLater) {
+        const now = new Date();
+        const secLater = new Date(task[i].dateCreated);
+
+        if(now > secLater.addHours(24)) {
 
             const title = task[i].title;
             const date = task[i].date;
