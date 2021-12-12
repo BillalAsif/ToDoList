@@ -295,7 +295,6 @@ let key = localStorage.length;
 if (key === 0) {
     const TodayTask = [];
     localStorage.setItem('todayTask', JSON.stringify(TodayTask));
-    localStorage.setItem('tomorrowTask', JSON.stringify(TodayTask));
     localStorage.setItem('ongoingTask', JSON.stringify(TodayTask));
     localStorage.setItem('incompleteTask', JSON.stringify(TodayTask));
     localStorage.setItem('completeTask', JSON.stringify(TodayTask));
@@ -303,7 +302,6 @@ if (key === 0) {
 }
 
 displayTasks("todayTask");
-displayTasks("tomorrowTask");
 displayTasks("ongoingTask");
 displayTasks("completeTask");
 displayTasks("incompleteTask");
@@ -492,7 +490,7 @@ function incompleteTask() {
 
 }
 
-function ongoingTask() { 
+function ongoingTask() {
 
     const ongoingTask = JSON.parse(localStorage.getItem('ongoingTask'));
     const task = JSON.parse(localStorage.getItem('todayTask'));
@@ -500,7 +498,7 @@ function ongoingTask() {
     ongoingTaskDiv.innerHTML = "";
 
     for (let i = 0; i < task.length; i++) {
-        
+
         Date.prototype.addHours = function (h) {
             this.setHours(this.getHours() + h);
             return this;
@@ -509,7 +507,7 @@ function ongoingTask() {
         const now = new Date();
         const secLater = new Date(task[i].dateCreated);
 
-        if(now > secLater.addHours(24)) {
+        if (now > secLater.addHours(24)) {
 
             const title = task[i].title;
             const date = task[i].date;
@@ -534,7 +532,6 @@ function ongoingTask() {
 
 }
 
-
 // BAGDE CODE 
 
 //variables
@@ -542,12 +539,10 @@ let todayTaskBadge = document.getElementById("todayTaskBadge");
 let ongoingTaskBadge = document.getElementById("ongoingTaskBadge");
 let incompleteTaskBadge = document.getElementById("incompleteTaskBadge");
 let completeTaskBadge = document.getElementById("completeTaskBadge");
-let tomorrowTaskBadge = document.getElementById("tomorrowTaskBadge");
 let allTaskBadge = document.getElementById("allTaskBadge");
 
 todayTaskBadge.innerText = 2;
-tomorrowTaskBadge.innerText = 3
 ongoingTaskBadge.innerText = 3;
 incompleteTaskBadge.innerText = 4;
 completeTaskBadge.innerText = 2;
-allTaskBadge.innerText = parseInt(todayTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent) + parseInt(tomorrowTaskBadge.textContent);
+allTaskBadge.innerText = parseInt(todayTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent);
