@@ -260,32 +260,6 @@ minRight.addEventListener('click', () => {
 
 })
 
-//Repeat button
-let repeatButton = document.getElementById("repeatButton");
-let repeatBadge = document.getElementById("repeatBadge");
-
-repeatButton.addEventListener('click', () => {
-    switch (repeatStatus) {
-        case "none":
-            repeatStatus = "daily";
-            repeatBadge.textContent = "Daily";
-            break;
-        case "daily":
-            repeatStatus = "weekly";
-            repeatBadge.textContent = "Weekly";
-            break;
-        case "weekly":
-            repeatStatus = "monthly";
-            repeatBadge.textContent = "Monthly";
-            break;
-        case "monthly":
-            repeatStatus = "none";
-            repeatBadge.textContent = "None";
-            break;
-    }
-
-})
-
 //Task save button and input field and HTML5 local storage - to store user chosen date and repeat status for new task
 let saveTaskButton = document.getElementById("saveTask");
 let deleteButton = document.querySelector(".del");
