@@ -279,11 +279,13 @@ displayTasks("todayTask");
 displayTasks("ongoingTask");
 displayTasks("completeTask");
 displayTasks("incompleteTask");
+showBadges();
 
 
 if (key > 0) {
     ongoingTask();
     incompleteTask();
+    showBadges();
 }
 
 //Classes
@@ -369,6 +371,7 @@ function displayTasks(task) {
         }
 
     }
+    showBadges();
 
 }
 
@@ -379,6 +382,7 @@ function addTask() {
     taskArr.push(newTask);
     localStorage.setItem('todayTask', JSON.stringify(taskArr));
     displayTasks("todayTask");
+    showBadges();
 
 }
 
@@ -390,6 +394,7 @@ function deleteTask(event, taskType) {
     taskArr.splice(index, 1);
     localStorage.setItem(taskType, JSON.stringify(taskArr));
     event.target.parentElement.remove();
+    showBadges();
 
 }
 
@@ -410,6 +415,7 @@ function completeTask(event) {
     localStorage.setItem('completeTask', JSON.stringify(taskArr));
     del.click();
     displayTasks("completeTask");
+    showBadges();
 
 
 }
@@ -461,6 +467,7 @@ function incompleteTask() {
 
     changeTaskStatusToIncomplete(todayTask, "todayTask");
     changeTaskStatusToIncomplete(ongoingTask, "ongoingTask");
+    showBadges();
 
 }
 
@@ -498,25 +505,44 @@ function ongoingTask() {
 
         }
 
+        showBadges();
+
 
     }
 
     displayTasks("todayTask");
     displayTasks("ongoingTask");
+    showBadges();
 
+}
+
+function checkNumberOfTasks(task) {
+
+    const taskStorage = JSON.parse(localStorage.getItem(task));
+    let taskNum = 0;
+
+    for (i = 0; i <= taskStorage.length; i++) {
+        taskNum = i;
+    }
+
+    return taskNum;
 }
 
 // BAGDE CODE 
 
-//variables
-let todayTaskBadge = document.getElementById("todayTaskBadge");
-let ongoingTaskBadge = document.getElementById("ongoingTaskBadge");
-let incompleteTaskBadge = document.getElementById("incompleteTaskBadge");
-let completeTaskBadge = document.getElementById("completeTaskBadge");
-let allTaskBadge = document.getElementById("allTaskBadge");
+function showBadges() {
 
-todayTaskBadge.innerText = 2;
-ongoingTaskBadge.innerText = 3;
-incompleteTaskBadge.innerText = 4;
-completeTaskBadge.innerText = 2;
-allTaskBadge.innerText = parseInt(todayTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent);
+    let todayTaskBadge = document.getElementById("todayTaskBadge");
+    let ongoingTaskBadge = document.getElementById("ongoingTaskBadge");
+    let incompleteTaskBadge = document.getElementById("incompleteTaskBadge");
+    let completeTaskBadge = document.getElementById("completeTaskBadge");
+    let allTaskBadge = document.getElementById("allTaskBadge");
+
+    todayTaskBadge.innerText = checkNumberOfTasks("todayTask");
+    ongoingTaskBadge.innerText = checkNumberOfTasks("ongoingTask");
+    incompleteTaskBadge.innerText = checkNumberOfTasks("incompleteTask");
+    completeTaskBadge.innerText = checkNumberOfTasks("completeTask");
+    allTaskBadge.innerText = parseInt(todayTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent);
+
+}
+
