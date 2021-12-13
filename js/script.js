@@ -398,7 +398,6 @@ function deleteTask(event, taskType) {
 
 }
 
-
 function completeTask(event) {
 
     const del = event.target.previousElementSibling;
