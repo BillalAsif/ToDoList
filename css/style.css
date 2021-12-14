@@ -214,7 +214,7 @@
     color: green;
 }
 
-.todayTask {
+.newTask {
     color:black;
     background-color:darkmagenta;
     border: black 1px solid;
@@ -254,7 +254,7 @@
     cursor: pointer;
 }
 
-.todayTask > i {
+.newTask > i {
     font-style: normal;
     padding-bottom: 6px;
 }

@@ -267,15 +267,15 @@ let taskStatus = "new";
 let key = localStorage.length;
 
 if (key === 0) {
-    const TodayTask = [];
-    localStorage.setItem('todayTask', JSON.stringify(TodayTask));
-    localStorage.setItem('ongoingTask', JSON.stringify(TodayTask));
-    localStorage.setItem('incompleteTask', JSON.stringify(TodayTask));
-    localStorage.setItem('completeTask', JSON.stringify(TodayTask));
+    const arr = [];
+    localStorage.setItem('newTask', JSON.stringify(arr));
+    localStorage.setItem('ongoingTask', JSON.stringify(arr));
+    localStorage.setItem('incompleteTask', JSON.stringify(arr));
+    localStorage.setItem('completeTask', JSON.stringify(arr));
 
 }
 
-displayTasks("todayTask");
+displayTasks("newTask");
 displayTasks("ongoingTask");
 displayTasks("completeTask");
 displayTasks("incompleteTask");
@@ -293,9 +293,8 @@ class Task {
 
     constructor(title, date, repeat, status, dateCreated) {
 
-        this.title = document.getElementById("newTask").value;
+        this.title = document.getElementById("newTaskInput").value;
         this.date = calenderDate;
-        this.repeat = repeatStatus;
         this.status = taskStatus;
         this.dateCreated = new Date();
 
@@ -312,7 +311,7 @@ saveTaskButton.addEventListener('click', () => {
     if (date < calDate) {
 
         addTask();
-        document.getElementById("newTask").value = "";
+        document.getElementById("newTaskInput").value = "";
         calenderUI.classList.remove('hide');
         calenderUI.classList.add('hide');
 
@@ -340,7 +339,6 @@ function displayTasks(task) {
             div.classList.add(task);
             const taskText = `
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
-            <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
             <i class='taskText'>${taskArr[i].title}</i>
             <i class='fas fa-times del delCom' onclick="deleteTask(event, '${task}')"></i>
              `;
@@ -349,7 +347,7 @@ function displayTasks(task) {
 
         }
 
-        if (task === "todayTask" || task === "ongoingTask" || task === "incompleteTask" || task === "tomorrowTask") {
+        if (task === "newTask" || task === "ongoingTask" || task === "incompleteTask" || task === "tomorrowTask") {
             const fullDate = new Date(taskArr[i].date);
             const date = fullDate.toDateString();
             const hour = fullDate.getHours();
@@ -359,7 +357,6 @@ function displayTasks(task) {
             div.classList.add(task);
             const taskText = `
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
-            <i class='badge bg-primary task-i'>${taskArr[i].repeat}</i>
             <i class='taskText'>${taskArr[i].title}</i>
             <i class='dateText'>${date} - ${time}</i>
             <i class='fas fa-times del' onclick="deleteTask(event, '${task}')"></i>
@@ -377,11 +374,11 @@ function displayTasks(task) {
 
 function addTask() {
 
-    const taskArr = JSON.parse(localStorage.getItem('todayTask'));
+    const taskArr = JSON.parse(localStorage.getItem('newTask'));
     const newTask = new Task;
     taskArr.push(newTask);
-    localStorage.setItem('todayTask', JSON.stringify(taskArr));
-    displayTasks("todayTask");
+    localStorage.setItem('newTask', JSON.stringify(taskArr));
+    displayTasks("newTask");
     showBadges();
 
 }
@@ -404,10 +401,8 @@ function completeTask(event) {
     const statusEl = "complete";
     const dateEl = event.target.previousElementSibling.previousElementSibling.innerHTML;
     const titleEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
-    const repeatEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
 
-
-    const arr = { title: titleEl, date: dateEl, repeat: repeatEl, status: statusEl };
+    const arr = { title: titleEl, date: dateEl, status: statusEl };
     const taskArr = JSON.parse(localStorage.getItem('completeTask'));
     const newTask = arr;
     taskArr.push(newTask);
@@ -424,7 +419,7 @@ function incompleteTask() {
     const incompleteTaskDiv = document.getElementById('incompleteTask');
     incompleteTaskDiv.innerHTML = "";
     const incompleteTask = JSON.parse(localStorage.getItem('incompleteTask'));
-    const todayTask = JSON.parse(localStorage.getItem('todayTask'));
+    const newTask = JSON.parse(localStorage.getItem('newTask'));
     const ongoingTask = JSON.parse(localStorage.getItem('ongoingTask'));
 
     function changeTaskStatusToIncomplete(task, taskKey) {
@@ -443,10 +438,9 @@ function incompleteTask() {
             if (now > secLater) {
                 const title = task[i].title;
                 const date = task[i].date;
-                const repeat = task[i].repeat;
                 const status = "incomplete";
                 const dateCreated = task[i].dateCreated;
-                const arr = { title, date, repeat, status, dateCreated };
+                const arr = { title, date, status, dateCreated };
 
                 incompleteTask.push(arr);
                 localStorage.setItem('incompleteTask', JSON.stringify(incompleteTask));
@@ -458,13 +452,13 @@ function incompleteTask() {
         }
 
 
-        displayTasks("todayTask");
+        displayTasks("newTask");
         displayTasks("ongoingTask");
         displayTasks("incompleteTask");
 
     }
 
-    changeTaskStatusToIncomplete(todayTask, "todayTask");
+    changeTaskStatusToIncomplete(newTask, "newTask");
     changeTaskStatusToIncomplete(ongoingTask, "ongoingTask");
     showBadges();
 
@@ -473,8 +467,8 @@ function incompleteTask() {
 function ongoingTask() {
 
     const ongoingTask = JSON.parse(localStorage.getItem('ongoingTask'));
-    const task = JSON.parse(localStorage.getItem('todayTask'));
-    const ongoingTaskDiv = document.getElementById("todayTask");
+    const task = JSON.parse(localStorage.getItem('newTask'));
+    const ongoingTaskDiv = document.getElementById("newTask");
     ongoingTaskDiv.innerHTML = "";
 
     for (let i = 0; i < task.length; i++) {
@@ -491,16 +485,15 @@ function ongoingTask() {
 
             const title = task[i].title;
             const date = task[i].date;
-            const repeat = task[i].repeat;
             const status = "ongoing";
             const dateCreated = task[i].dateCreated;
-            const arr = { title, date, repeat, status, dateCreated };
+            const arr = { title, date, status, dateCreated };
 
             ongoingTask.push(arr);
             localStorage.setItem('ongoingTask', JSON.stringify(ongoingTask));
             const array = task;
             array.splice(i, 1);
-            localStorage.setItem('todayTask', JSON.stringify(array));
+            localStorage.setItem('newTask', JSON.stringify(array));
 
         }
 
@@ -509,7 +502,7 @@ function ongoingTask() {
 
     }
 
-    displayTasks("todayTask");
+    displayTasks("newTask");
     displayTasks("ongoingTask");
     showBadges();
 
@@ -531,17 +524,23 @@ function checkNumberOfTasks(task) {
 
 function showBadges() {
 
-    let todayTaskBadge = document.getElementById("todayTaskBadge");
+    let newTaskBadge = document.getElementById("newTaskBadge");
     let ongoingTaskBadge = document.getElementById("ongoingTaskBadge");
     let incompleteTaskBadge = document.getElementById("incompleteTaskBadge");
     let completeTaskBadge = document.getElementById("completeTaskBadge");
     let allTaskBadge = document.getElementById("allTaskBadge");
 
-    todayTaskBadge.innerText = checkNumberOfTasks("todayTask");
+    newTaskBadge.innerText = checkNumberOfTasks("newTask");
     ongoingTaskBadge.innerText = checkNumberOfTasks("ongoingTask");
     incompleteTaskBadge.innerText = checkNumberOfTasks("incompleteTask");
     completeTaskBadge.innerText = checkNumberOfTasks("completeTask");
-    allTaskBadge.innerText = parseInt(todayTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent);
+    allTaskBadge.innerText = parseInt(newTaskBadge.textContent) + parseInt(ongoingTaskBadge.textContent) + parseInt(incompleteTaskBadge.textContent) + parseInt(completeTaskBadge.textContent);
 
 }
 
+//Test tasks
+
+function testTasks() {
+
+
+}
