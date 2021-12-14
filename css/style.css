@@ -27,7 +27,9 @@
     width: 100%;
     text-align: left;
     border: none;
+    cursor: default!important;
 }
+
 
 .nav-left button i  {
    margin-right: 5px;
@@ -216,7 +218,7 @@
 
 .newTask {
     color:black;
-    background-color:darkmagenta;
+    background-color:darkgreen;
     border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
@@ -261,7 +263,7 @@
 
 .completeTask {
         color:black;
-        background-color:darkgray;
+        background-color:dimgray;
         border: black 1px solid;
         margin-top: 10px;
         padding: 20px;
@@ -281,7 +283,7 @@
 
 .ongoingTask {
     color:black;
-    background-color:darkslateblue;
+    background-color:darkblue;
     border: black 1px solid;
     margin-top: 10px;
     padding: 20px;

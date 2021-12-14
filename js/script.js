@@ -272,6 +272,7 @@ if (key === 0) {
     localStorage.setItem('ongoingTask', JSON.stringify(arr));
     localStorage.setItem('incompleteTask', JSON.stringify(arr));
     localStorage.setItem('completeTask', JSON.stringify(arr));
+    testTasks()//Populates app with dummy tasks
 
 }
 
@@ -347,7 +348,7 @@ function displayTasks(task) {
 
         }
 
-        if (task === "newTask" || task === "ongoingTask" || task === "incompleteTask" || task === "tomorrowTask") {
+        if (task === "newTask" || task === "ongoingTask" || task === "incompleteTask") {
             const fullDate = new Date(taskArr[i].date);
             const date = fullDate.toDateString();
             const hour = fullDate.getHours();
@@ -542,5 +543,17 @@ function showBadges() {
 
 function testTasks() {
 
+    function makeTestTask(task, taskArr) {
+        const newArr = JSON.parse(localStorage.getItem(task));
+        const newTask = taskArr;
+        newArr.push(newTask);
+        localStorage.setItem(task, JSON.stringify(newArr));
+        displayTasks(task);
+        showBadges();
+    }
+
+    makeTestTask("ongoingTask", { title: "Send email to Karen.", date: "2022-12-01T09:30:00.000Z", status: "ongoing", dateCreated: "2021-12-14T21:43:48.979Z" })
+    makeTestTask("incompleteTask", { title: "Send email to Devon.", date: "2020-12-17T09:30:00.000Z", status: "incomplete", dateCreated: "2020-12-14T21:43:48.979Z" })
 
 }
+
