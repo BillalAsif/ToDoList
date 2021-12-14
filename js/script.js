@@ -281,12 +281,14 @@ displayTasks("ongoingTask");
 displayTasks("completeTask");
 displayTasks("incompleteTask");
 showBadges();
+showTaskTally();
 
 
 if (key > 0) {
     ongoingTask();
     incompleteTask();
     showBadges();
+    showTaskTally();
 }
 
 //Classes
@@ -370,6 +372,7 @@ function displayTasks(task) {
 
     }
     showBadges();
+    showTaskTally();
 
 }
 
@@ -381,6 +384,7 @@ function addTask() {
     localStorage.setItem('newTask', JSON.stringify(taskArr));
     displayTasks("newTask");
     showBadges();
+    showTaskTally();
 
 }
 
@@ -393,6 +397,7 @@ function deleteTask(event, taskType) {
     localStorage.setItem(taskType, JSON.stringify(taskArr));
     event.target.parentElement.remove();
     showBadges();
+    showTaskTally();
 
 }
 
@@ -411,7 +416,7 @@ function completeTask(event) {
     del.click();
     displayTasks("completeTask");
     showBadges();
-
+    showTaskTally();
 
 }
 
@@ -462,6 +467,7 @@ function incompleteTask() {
     changeTaskStatusToIncomplete(newTask, "newTask");
     changeTaskStatusToIncomplete(ongoingTask, "ongoingTask");
     showBadges();
+    showTaskTally();
 
 }
 
@@ -498,14 +504,12 @@ function ongoingTask() {
 
         }
 
-        showBadges();
-
-
     }
 
     displayTasks("newTask");
     displayTasks("ongoingTask");
     showBadges();
+    showTaskTally();
 
 }
 
@@ -539,6 +543,15 @@ function showBadges() {
 
 }
 
+function showTaskTally() {
+
+    let taskCompleted = document.getElementById("taskCompleted");
+    let taskOutstanding = document.getElementById("taskOutstanding");
+
+    taskCompleted.innerText = checkNumberOfTasks("completeTask");
+    taskOutstanding.innerText = checkNumberOfTasks("incompleteTask") + checkNumberOfTasks("ongoingTask");
+}
+
 //Test tasks
 
 function testTasks() {
@@ -550,10 +563,13 @@ function testTasks() {
         localStorage.setItem(task, JSON.stringify(newArr));
         displayTasks(task);
         showBadges();
+        showTaskTally();
     }
 
     makeTestTask("ongoingTask", { title: "Send email to Karen.", date: "2022-12-01T09:30:00.000Z", status: "ongoing", dateCreated: "2021-12-14T21:43:48.979Z" })
     makeTestTask("incompleteTask", { title: "Send email to Devon.", date: "2020-12-17T09:30:00.000Z", status: "incomplete", dateCreated: "2020-12-14T21:43:48.979Z" })
 
 }
+
+
 
