@@ -1,7 +1,22 @@
-.bg {
-    height: 100vh;
-    background-color: black;
+body {
+    background-image: url('/images/bg.jpeg');
+    background-size: cover;
+    animation: slidein 100s forwards infinite alternate;
 }
+
+@keyframes slidein {
+    from {
+        background-position: top;
+        background-size: 3000px;
+    }
+
+    to {
+        background-position: -100px 0px;
+        background-size: 2750px;
+    }
+
+}
+
 
 .hide {
     display: none;
@@ -11,37 +26,41 @@
     padding-top: 10px;
 }
 
+.margin-right {
+    margin-right: 10px;
+}
+
 .title {
     text-align: center;
+    padding: 40px 0px;
+    color: #161748;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .dayofmon {
     text-align: right;
 }
 
-.nav-button {
-    display: block;
-    padding: 5px;
-    margin: 10px 0px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    cursor: default !important;
+.nav-items {
+    margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    opacity: 0.8;
 }
 
-
-.nav-left button i {
-    margin-right: 5px;
+.nav-items>i {
+    margin-right: 10px;
 }
 
-.nav-left button span {
+.nav-items>span {
     float: right;
-    margin-top: 2px
+    margin-top: 3px;
 }
 
 .overview {
-    background-color: lightgray;
-    border: black 1px solid;
     text-align: center;
     padding: 25px;
     color: black;
@@ -54,8 +73,6 @@
 
 
 .task {
-    background-color: lightgray;
-    border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
     color: white;
@@ -177,17 +194,6 @@
     color: green;
 }
 
-.newTask {
-    color: black;
-    background-color: darkgreen;
-    border: black 1px solid;
-    margin-top: 10px;
-    padding: 20px;
-    color: white;
-    position: relative;
-
-}
-
 .taskText {
     font-style: normal !important;
     cursor: default !important;
@@ -222,10 +228,15 @@
     padding-bottom: 6px;
 }
 
+/* Task syles */
+.newTask {
+    margin-top: 10px;
+    padding: 20px;
+    color: white;
+    position: relative;
+}
+
 .completeTask {
-    color: black;
-    background-color: dimgray;
-    border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
     color: white;
@@ -233,9 +244,6 @@
 }
 
 .incompleteTask {
-    color: black;
-    background-color: darkred;
-    border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
     color: white;
@@ -243,9 +251,6 @@
 }
 
 .ongoingTask {
-    color: black;
-    background-color: darkblue;
-    border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
     color: white;

@@ -165,7 +165,8 @@ minRight.addEventListener('click', () => {
 
 })
 
-//Task save button and input field and HTML5 local storage - to store user chosen date and repeat status for new task
+//Task save button and input field and HTML5 local storage - 
+//to store user chosen date and repeat status for new task
 let saveTaskButton = document.getElementById("saveTask");
 let deleteButton = document.querySelector(".del");
 let taskStatus = "new";
