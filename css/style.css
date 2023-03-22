@@ -1,4 +1,3 @@
-
 .bg {
     height: 100vh;
     background-color: black;
@@ -9,7 +8,7 @@
 }
 
 .pt-10 {
-    padding-top:10px;
+    padding-top: 10px;
 }
 
 .title {
@@ -17,31 +16,31 @@
 }
 
 .dayofmon {
-    text-align:right;
+    text-align: right;
 }
 
 .nav-button {
-    display:block;
+    display: block;
     padding: 5px;
     margin: 10px 0px;
     width: 100%;
     text-align: left;
     border: none;
-    cursor: default!important;
+    cursor: default !important;
 }
 
 
-.nav-left button i  {
-   margin-right: 5px;
+.nav-left button i {
+    margin-right: 5px;
 }
 
 .nav-left button span {
     float: right;
-    margin-top:2px
+    margin-top: 2px
 }
 
 .overview {
-    background-color:lightgray;
+    background-color: lightgray;
     border: black 1px solid;
     text-align: center;
     padding: 25px;
@@ -53,53 +52,9 @@
     text-align: left;
 }
 
-.timer {
-    background-color:lightgray;
-    border: black 1px solid;
-    padding: 25px;
-    color: white;
-    text-align: center;
-}
-
-.timer button {
-    margin-top:10px;
-}
-
-.timer-button {
-    display:flex;
-    position: relative;
-}
-
-.timer-button button {
-    margin:10px;
-}
-
-.timer-button h1 {
-    margin-top:3px;
-}
-
-.add-task-btn i {
-    float:right;
-    margin-top: 3px;
-}
-
-#increaseCount {
-    position: absolute;
-    left: 0px;
-}
-
-#counter {
-    text-align: center;
-    width: 99%;
-}
-
-#decreaseCount {
-    position: absolute;
-    right: 0px;
-}
 
 .task {
-    background-color:lightgray;
+    background-color: lightgray;
     border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
@@ -113,7 +68,7 @@
 }
 
 .task i {
-    width:5%;
+    width: 5%;
     font-size: 15px;
     cursor: pointer;
 }
@@ -125,10 +80,10 @@
 }
 
 .calenderUI {
-    position:absolute;
+    position: absolute;
     width: 250px;
     height: 300px;
-    background-color:white;
+    background-color: white;
     right: 0px;
     top: 80px;
     padding: 5px;
@@ -144,13 +99,13 @@
 }
 
 .calenderUI div p {
-    margin:0px;
-    font-size:20px;
+    margin: 0px;
+    font-size: 20px;
     color: white;
 }
 
 .year {
-    background-color:lightgreen;
+    background-color: lightgreen;
 
 }
 
@@ -163,53 +118,59 @@
 }
 
 .time {
-    background-color:lightpink;
+    background-color: lightpink;
 }
 
-.year :first-child, .month :first-child, .days :first-child, .time :first-child{
+.year :first-child,
+.month :first-child,
+.days :first-child,
+.time :first-child {
     position: absolute;
-    left:10px;
+    left: 10px;
     font-size: 20px;
     color: white;
 }
 
-.year :nth-child(3), .month :nth-child(3), .days :nth-child(3), .time :nth-child(5){
+.year :nth-child(3),
+.month :nth-child(3),
+.days :nth-child(3),
+.time :nth-child(5) {
     position: absolute;
     font-size: 20px;
-    right:18px;
+    right: 18px;
     color: white;
 }
 
 .time .fa-arrow-circle-right {
     position: absolute;
     font-size: 20px;
-    right:45px;
+    right: 45px;
     color: white;
 }
 
-.time .fa-arrow-circle-left{
+.time .fa-arrow-circle-left {
     position: absolute;
     font-size: 20px;
-    left:35px;
+    left: 35px;
     color: white;
 }
 
 .time p {
     position: absolute;
     font-size: 20px;
-    left:101x;
+    left: 101x;
     color: white;
 }
 
 #repeatBadge {
-    position:absolute;
+    position: absolute;
     top: 5px;
-    right:57px;
-    width:55px;
+    right: 57px;
+    width: 55px;
     text-align: center;
     color: black;
     background-color: none;
-    font-weight:normal;
+    font-weight: normal;
 }
 
 #saveTask {
@@ -217,8 +178,8 @@
 }
 
 .newTask {
-    color:black;
-    background-color:darkgreen;
+    color: black;
+    background-color: darkgreen;
     border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
@@ -228,8 +189,8 @@
 }
 
 .taskText {
-    font-style: normal!important;
-    cursor:default!important;
+    font-style: normal !important;
+    cursor: default !important;
     margin-top: 3px;
 }
 
@@ -256,24 +217,24 @@
     cursor: pointer;
 }
 
-.newTask > i {
+.newTask>i {
     font-style: normal;
     padding-bottom: 6px;
 }
 
 .completeTask {
-        color:black;
-        background-color:dimgray;
-        border: black 1px solid;
-        margin-top: 10px;
-        padding: 20px;
-        color: white;
-        position: relative;
+    color: black;
+    background-color: dimgray;
+    border: black 1px solid;
+    margin-top: 10px;
+    padding: 20px;
+    color: white;
+    position: relative;
 }
 
 .incompleteTask {
-    color:black;
-    background-color:darkred;
+    color: black;
+    background-color: darkred;
     border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
@@ -282,8 +243,8 @@
 }
 
 .ongoingTask {
-    color:black;
-    background-color:darkblue;
+    color: black;
+    background-color: darkblue;
     border: black 1px solid;
     margin-top: 10px;
     padding: 20px;
@@ -292,5 +253,6 @@
 }
 
 .delCom {
-    right: 20px;;
+    right: 20px;
+    ;
 }
