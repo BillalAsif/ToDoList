@@ -234,6 +234,7 @@ body {
     padding: 20px;
     color: white;
     position: relative;
+    border: solid 1px lightpink;
 }
 
 .completeTask {
@@ -241,6 +242,7 @@ body {
     padding: 20px;
     color: white;
     position: relative;
+    border: solid 1px purple;
 }
 
 .incompleteTask {
@@ -248,6 +250,7 @@ body {
     padding: 20px;
     color: white;
     position: relative;
+    border: solid 1px red;
 }
 
 .ongoingTask {
@@ -255,6 +258,7 @@ body {
     padding: 20px;
     color: white;
     position: relative;
+    border: solid 1px lightgreen;
 }
 
 .delCom {
