@@ -30,12 +30,16 @@ body {
     margin-right: 10px;
 }
 
-.title {
-    text-align: center;
-    padding: 40px 0px;
-    color: black;
-    font-weight: bold;
+.logo-wrapper {
+    background-color: white;
     margin-top: 10px;
+    height: 141px;
+    text-align: center;
+}
+
+.logo {
+
+    background: white;
 }
 
 .dayofmon {
@@ -63,21 +67,21 @@ body {
 .overview {
     text-align: center;
     padding: 25px;
-    color: black;
+    color: gray;
     font-weight: bold;
     font-size: 20px;
     margin: 10px 0px;
-    border: 2px solid blue;
+    background: white;
 }
 
 
 .task {
     margin-top: 10px;
     padding: 20px;
-    color: white;
+    color: black;
     text-align: center;
     position: relative;
-    border: 2px solid blue;
+    background: white;
 }
 
 .task .row input {
@@ -229,39 +233,32 @@ body {
 }
 
 /* Task syles */
-.newTask {
-    margin-top: 10px;
-    padding: 20px;
-    color: white;
-    position: relative;
-    border: solid 2px lightpink;
-}
-
-.completeTask {
-    margin-top: 10px;
-    padding: 20px;
-    color: white;
-    position: relative;
-    border: solid 2px purple;
-}
-
-.incompleteTask {
-    margin-top: 10px;
-    padding: 20px;
-    color: white;
-    position: relative;
-    border: solid 2px red;
-}
-
+.newTask,
+.completeTask,
+.incompleteTask,
 .ongoingTask {
     margin-top: 10px;
     padding: 20px;
-    color: white;
     position: relative;
-    border: solid 2px lightgreen;
+    background: white;
+}
+
+.newTask>.badge {
+    background-color: green !important;
+}
+
+.completeTask>.badge {
+    background-color: black !important;
+}
+
+.incompleteTask>.badge {
+    background-color: red !important;
+}
+
+.ongoingTask>.badge {
+    background-color: blue !important;
 }
 
 .delCom {
     right: 20px;
-    ;
 }
