@@ -33,7 +33,7 @@ body {
 .title {
     text-align: center;
     padding: 40px 0px;
-    color: #161748;
+    color: black;
     font-weight: bold;
     margin-top: 10px;
 }
@@ -64,11 +64,9 @@ body {
     text-align: center;
     padding: 25px;
     color: black;
+    font-weight: bold;
+    font-size: 20px;
     margin: 10px 0px;
-}
-
-.overview h1 {
-    text-align: left;
 }
 
 
@@ -234,7 +232,7 @@ body {
     padding: 20px;
     color: white;
     position: relative;
-    border: solid 1px lightpink;
+    border: solid 2px lightpink;
 }
 
 .completeTask {
@@ -242,7 +240,7 @@ body {
     padding: 20px;
     color: white;
     position: relative;
-    border: solid 1px purple;
+    border: solid 2px purple;
 }
 
 .incompleteTask {
@@ -250,7 +248,7 @@ body {
     padding: 20px;
     color: white;
     position: relative;
-    border: solid 1px red;
+    border: solid 2px red;
 }
 
 .ongoingTask {
@@ -258,7 +256,7 @@ body {
     padding: 20px;
     color: white;
     position: relative;
-    border: solid 1px lightgreen;
+    border: solid 2px lightgreen;
 }
 
 .delCom {
