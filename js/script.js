@@ -474,6 +474,8 @@ function testTasks() {
 
     makeTestTask("ongoingTask", { title: "Send email to Karen.", date: "2022-12-01T09:30:00.000Z", status: "ongoing", dateCreated: "2021-12-14T21:43:48.979Z" })
     makeTestTask("incompleteTask", { title: "Send email to Devon.", date: "2020-12-17T09:30:00.000Z", status: "incomplete", dateCreated: "2020-12-14T21:43:48.979Z" })
+    makeTestTask("newTask", { title: "Call Bill.", date: "2022-12-01T09:30:00.000Z", status: "new", dateCreated: "2021-12-14T21:43:48.979Z" })
+    makeTestTask("completeTask", { title: "Complete Sales Presentation.", date: "2020-12-17T09:30:00.000Z", status: "complete", dateCreated: "2020-12-14T21:43:48.979Z" })
 
 }
 
