@@ -91,6 +91,10 @@ body {
     width: 100%;
 }
 
+.input-task-controls>i {
+    cursor: pointer;
+}
+
 /* Calender UI Start */
 
 .calenderUI {
