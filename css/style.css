@@ -82,23 +82,16 @@ body {
     text-align: center;
     position: relative;
     background: white;
-}
-
-.task .row input {
-    background: transparent;
-}
-
-.task i {
-    width: 5%;
-    font-size: 15px;
-    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
 }
 
 .task input {
-    width: 80%;
-    background: transparent;
     border: none;
+    width: 100%;
 }
+
+/* Calender UI Start */
 
 .calenderUI {
     position: absolute;
@@ -198,31 +191,24 @@ body {
     color: green;
 }
 
+/* Calender UI End */
+
 .taskText {
     font-style: normal !important;
     cursor: default !important;
-    margin-top: 3px;
 }
 
 .dateText {
-    position: absolute;
-    right: 80px;
     font-style: normal;
     font-size: small;
-    margin-top: 3px;
 }
 
 .del {
-    margin-top: 5px;
-    position: absolute;
-    right: 50px;
     color: red;
     cursor: pointer;
 }
 
 .complete {
-    margin-top: 5px;
-    float: right;
     color: green;
     cursor: pointer;
 }
@@ -241,24 +227,68 @@ body {
     padding: 20px;
     position: relative;
     background: white;
+    display: flex;
+    flex-direction: column;
 }
 
-.newTask>.badge {
+.newTask>div>.badge {
     background-color: green !important;
 }
 
-.completeTask>.badge {
+.completeTask>div>.badge {
     background-color: black !important;
 }
 
-.incompleteTask>.badge {
+.incompleteTask>div>.badge {
     background-color: red !important;
 }
 
-.ongoingTask>.badge {
+.ongoingTask>div>.badge {
     background-color: blue !important;
 }
 
-.delCom {
-    right: 20px;
+.top-section-task {
+    display: flex;
+
+}
+
+.bottom-section-task {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    margin-top: 10px;
+}
+
+.task-controls-del {
+    display: flex;
+    justify-content: right;
+}
+
+.taskText {
+    margin-left: 10px;
+}
+
+
+@media screen and (max-width: 991px) {
+    .overview {
+        font-size: 16px;
+    }
+
+    .top-section-task {
+        flex-direction: column;
+    }
+
+    .bottom-section-task {
+        flex-direction: row;
+    }
+
+    .taskText {
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .task-controls:first-child {
+        margin-right: 10px
+    }
+
 }

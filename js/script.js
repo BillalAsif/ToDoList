@@ -234,6 +234,7 @@ saveTaskButton.addEventListener('click', () => {
 
 //Functions
 
+// Displays all tasks
 function displayTasks(task) {
 
     const taskArr = JSON.parse(localStorage.getItem(task));
@@ -247,9 +248,15 @@ function displayTasks(task) {
             const div = document.createElement("div");
             div.classList.add(task);
             const taskText = `
-            <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
+            <div class="top-section-task">
+            <i class='badge task-i'>${taskArr[i].status}</i>
             <i class='taskText'>${taskArr[i].title}</i>
+            </div>
+            <div class="bottom-section-completetask">
+            <div class="task-controls-del">
             <i class='fas fa-times del delCom' onclick="deleteTask(event, '${task}')"></i>
+            </div>
+            </div>
              `;
             div.innerHTML = taskText;
             result.appendChild(div);
@@ -265,11 +272,17 @@ function displayTasks(task) {
             const div = document.createElement("div");
             div.classList.add(task);
             const taskText = `
+            <div class="top-section-task">
             <i class='badge bg-secondary task-i'>${taskArr[i].status}</i>
             <i class='taskText'>${taskArr[i].title}</i>
+            </div>
+            <div class="bottom-section-task">
             <i class='dateText'>${date} - ${time}</i>
+            <div class="task-controls">
             <i class='fas fa-times del' onclick="deleteTask(event, '${task}')"></i>
             <i class='fas fa-check complete' onclick="completeTask(event)"></i>
+            </div>
+            </div>
              `;
             div.innerHTML = taskText;
             result.appendChild(div);
@@ -281,6 +294,8 @@ function displayTasks(task) {
     showTaskTally();
 
 }
+
+// Adds tasks to local storage
 
 function addTask() {
 
@@ -294,6 +309,8 @@ function addTask() {
 
 }
 
+// Removes tasks from local storage
+
 function deleteTask(event, taskType) {
 
     const sisElement = event.target.previousElementSibling.previousElementSibling.innerHTML;
@@ -306,6 +323,8 @@ function deleteTask(event, taskType) {
     showTaskTally();
 
 }
+
+// stores complete tasks to local storage
 
 function completeTask(event) {
 
@@ -325,6 +344,8 @@ function completeTask(event) {
     showTaskTally();
 
 }
+
+// stores incomplete tasks to local storage
 
 function incompleteTask() {
 
@@ -377,6 +398,7 @@ function incompleteTask() {
 
 }
 
+// stores ongoing tasks to local storage
 function ongoingTask() {
 
     const ongoingTask = JSON.parse(localStorage.getItem('ongoingTask'));
@@ -419,19 +441,9 @@ function ongoingTask() {
 
 }
 
-function checkNumberOfTasks(task) {
 
-    const taskStorage = JSON.parse(localStorage.getItem(task));
-    let taskNum = 0;
 
-    for (i = 0; i <= taskStorage.length; i++) {
-        taskNum = i;
-    }
-
-    return taskNum;
-}
-
-// BAGDE CODE 
+// BAGDE CODE - Displays status of the tasks 
 
 function showBadges() {
 
@@ -449,13 +461,29 @@ function showBadges() {
 
 }
 
+// End Badge code
+
+// Displays completed and outstanding task
+
+function checkNumberOfTasks(task) {
+
+    const taskStorage = JSON.parse(localStorage.getItem(task));
+    let taskNum = 0;
+
+    for (i = 0; i <= taskStorage.length; i++) {
+        taskNum = i;
+    }
+
+    return taskNum;
+}
+
 function showTaskTally() {
 
     let taskCompleted = document.getElementById("taskCompleted");
     let taskOutstanding = document.getElementById("taskOutstanding");
 
     taskCompleted.innerText = checkNumberOfTasks("completeTask");
-    taskOutstanding.innerText = checkNumberOfTasks("incompleteTask") + checkNumberOfTasks("ongoingTask");
+    taskOutstanding.innerText = checkNumberOfTasks("incompleteTask") + checkNumberOfTasks("ongoingTask") + checkNumberOfTasks("newTask");
 }
 
 //Test tasks

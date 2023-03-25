@@ -20,6 +20,7 @@
 
         <div class="row">
 
+            <!-- Nav bar on the left -->
             <div class="col-lg-3 nav-left">
 
                 <div class="logo-wrapper">
@@ -65,9 +66,13 @@
 
 
                     <input id="newTaskInput" class="new-task-input"
-                        placeholder="Type task...choose date...click the tick" type="text"><i id="calenderButton"
-                        class="far fa-calendar-plus"></i><i id="saveTask" class="fas fa-check"></i>
+                        placeholder="Type task...choose date...click the tick" type="text">
+                    <div class="input-task-controls">
+                        <i id="saveTask" class="fas fa-check"></i>
+                        <i id="calenderButton" class="far fa-calendar-plus"></i>
+                    </div>
 
+                    <!-- Calender UI  Modal-->
                     <div id="calender" class="calenderUI hide">
                         <div class="year">
                             <i id="yearLeft" class="fas fa-arrow-left"></i>
@@ -95,6 +100,7 @@
 
                 </div>
 
+                <!-- Tasks below are driven by js and local storage -->
                 <div id="newTask">
 
 
