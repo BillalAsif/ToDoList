@@ -10,7 +10,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
-    <link rel="manifest" href="/images/favicon.png">
 
     <title>Task Hero</title>
 
@@ -110,6 +109,17 @@
                 <!-- Tasks below are driven by js and local storage -->
                 <div id="newTask">
 
+                    <div class="top-section-task">
+                        <i class='badge bg-secondary task-i'>new task</i>
+                        <i class='taskText'>Sent the frinking email</i>
+                    </div>
+                    <div class="bottom-section-task">
+                        <i class='dateText'>Thu Dec 01 2022 - 9:30</i>
+                        <div class="task-controls">
+                            <i id="delTask" class='fas fa-times del'></i>
+                            <i id="completeTask" class='fas fa-check complete'></i>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -133,7 +143,27 @@
 
                 </div>
 
+                <!--                <div id="test">
+
+                    <div class="top-section-task">
+                        <i class='badge bg-secondary task-i'>new task</i>
+                        <i class='taskText'>Sent the frinking email</i>
+                    </div>
+                    <div class="bottom-section-task">
+                        <i class='dateText'>Thu Dec 01 2022 - 9:30</i>
+                        <div class="task-controls">
+                            <i id="delTask" class='fas fa-times del'></i>
+                            <i id="completeTask" class='fas fa-check complete'></i>
+                        </div>
+                    </div>
+
+                </div> -->
+
             </div>
+
+
+
+
         </div>
 
         <script src="js/script.js"></script>

@@ -313,25 +313,29 @@ function addTask() {
 
 function deleteTask(event, taskType) {
 
-    const sisElement = event.target.previousElementSibling.previousElementSibling.innerHTML;
-    const taskArr = JSON.parse(localStorage.getItem(taskType));
-    const index = taskArr.indexOf(sisElement);
-    taskArr.splice(index, 1);
+    //const dateEl = event.target.parentElement.parentElement.children[0].innerHTML;
+    const titleEl = event.target.parentElement.parentElement.parentElement.children[0].children[1].innerHTML; const taskArr = JSON.parse(localStorage.getItem(taskType));
+    const indexOfTitle = taskArr.indexOf(titleEl);
+    //const indexOfDate = taskArr.indexOf(dateEl);
+    taskArr.splice(indexOfTitle, 1);
     localStorage.setItem(taskType, JSON.stringify(taskArr));
-    event.target.parentElement.remove();
+    event.target.parentElement.parentElement.parentElement.remove();
     showBadges();
     showTaskTally();
 
+
 }
+
+
 
 // stores complete tasks to local storage
 
 function completeTask(event) {
 
-    const del = event.target.previousElementSibling;
+    const del = event.target.parentElement.children[0];
     const statusEl = "complete";
-    const dateEl = event.target.previousElementSibling.previousElementSibling.innerHTML;
-    const titleEl = event.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+    const dateEl = event.target.parentElement.parentElement.children[0].innerHTML;
+    const titleEl = event.target.parentElement.parentElement.parentElement.children[0].children[1].innerHTML;
 
     const arr = { title: titleEl, date: dateEl, status: statusEl };
     const taskArr = JSON.parse(localStorage.getItem('completeTask'));
